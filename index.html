@@ -1,81 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Zeta Vvip</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Reseller Script ExoSparta</title>
     <style>
         body {
-            background-color: black;
-            color: silver;
-            font-family: 'Courier New', Courier, monospace;
-            padding: 20px;
-            margin: 0;
-            font-weight: bold;
-        }
-        .terminal {
-            border: 1px solid silver;
-            padding: 10px;
-            height: 400px;
-            overflow-y: auto;
-            font-weight: bold;
-        }
-        .input-line {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
-            font-weight: bold;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #c0c0c0;
+            position: relative; /* Tambahkan ini untuk posisi relatif */
+            overflow: hidden; /* Sembunyikan overflow */
         }
-        .prompt {
-            margin-right: 5px;
-            color: silver;
-            font-weight: bold;
+
+        .color-line {
+            position: absolute;
+            width: 5px; /* Lebar garis */
+            height: 100%; /* Tinggi penuh */
+            background: linear-gradient(to bottom, red, orange, yellow, green, blue, indigo, violet);
+            animation: move 2s linear infinite; /* Animasi bergerak */
         }
-        .input {
-            flex-grow: 1;
-            outline: none;
-            background: black;
-            color: silver;
-            border: none;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1rem;
+
+        .color-line.left {
+            left: 0;
+            animation-delay: 0s; /* Delay untuk sisi kiri */
+        }
+
+        .color-line.right {
+            right: 0;
+            animation-delay: 0.5s; /* Delay untuk sisi kanan */
+        }
+
+        .color-line.top {
+            top: 0;
+            width: 100%; /* Lebar penuh untuk sisi atas */
+            height: 5px; /* Tinggi garis */
+            animation-delay: 0.25s; /* Delay untuk sisi atas */
+        }
+
+        .color-line.bottom {
+            bottom: 0;
+            width: 100%; /* Lebar penuh untuk sisi bawah */
+            height: 5px; /* Tinggi garis */
+            animation-delay: 0.75s; /* Delay untuk sisi bawah */
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-100%); /* Gerakan ke atas */
+            }
+        }
+
+        .profile-card {
+            background-color: silver;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+            z-index: 1; /* Pastikan card di atas warna */
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #f0f0f0;
+            margin-bottom: 20px;
+        }
+        
+        .profile-name {
+            font-size: 24px;
             font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .profile-title {
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="terminal" id="terminal" role="log" aria-live="polite">
-        <div>Selamat datang di Zeta Bot</div>
-        <div>Ketik .menu untuk memunculkan menu</div>
+    <div class="color-line left"></div> <!-- Garis sisi kiri -->
+    <div class="color-line right"></div> <!-- Garis sisi kanan -->
+    <div class="color-line top"></div> <!-- Garis sisi atas -->
+    <div class="color-line bottom"></div> <!-- Garis sisi bawah -->
+    
+    <div class="profile-card">
+        <img 
+            src="https://l.top4top.io/p_34648m3y71.jpg" 
+            alt="Professional headshot of a smiling business person with neutral background" 
+            class="profile-image"
+            onerror="this.src='https://via.placeholder.com/500';this.alt='Default profile image'">
+        
+        <h1 class="profile-name">Wynz`sX</h1>
+        <p class="profile-title">𝘿𝙚𝙫𝙤𝙡𝙤𝙥𝙚𝙧 𝙎𝙘𝙧𝙞𝙥𝙩 𝙀𝙭𝙤𝙎𝙥𝙖𝙧𝙩𝙖</p>
     </div>
-    <div class="input-line">
-        <span class="prompt">ZetaFree : ~</span>
-        <input type="text" class="input" id="commandInput" autofocus autocomplete="off" spellcheck="false" aria-label="Terminal command input" />
-    </div>
-
-    <script>
-        const terminal = document.getElementById('terminal');
-        const commandInput = document.getElementById('commandInput');
-
-        commandInput.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                const command = commandInput.value.trim();
-                if (!command) return;
-
-                // Display the command with prompt
-                terminal.innerHTML += `<div><span class="prompt">ZetaFree : ~</span> ${command}</div>`;
-                commandInput.value = '';
-
-                // Simulate command output
-                if (command === 'help') {
-                    terminal.innerHTML += '<div>Available commands: help, clear</div>';
-                } else if (command === 'clear') {
-                    terminal.innerHTML = '';
-                } else {
-                    terminal.innerHTML += `<div>Command not found: ${command}</div>`;
-                }
-                terminal.scrollTop = terminal.scrollHeight;
-            }
-        });
-    </script>
 </body>
 </html>
-
