@@ -1,53 +1,220 @@
-<html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
-   Mehio Version 30 Pro
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>primrose bugs app</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-   @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
     body {
-      font-family: 'Inter', sans-serif;
+      background: url('https://primrosereyy.nichesite.org/uploads/685f52519c864.jpg') no-repeat center/cover fixed;
     }
+    .glow::before {
+      content:'';
+      position:absolute; inset:0; margin:auto;
+      width:260px; height:260px;
+      background:radial-gradient(circle at center,#6366f1 0%,transparent 70%);
+      filter:blur(60px); opacity:.55; z-index:-1;
+    }
+    .lamp {
+      position:absolute; top:-14px; left:50%; translate:-50% 0;
+      width:18px; height:18px; border-radius:9999px;
+      background:#3b82f6; box-shadow:0 0 18px 8px #3b82f6aa;
+    }
+    input,button,label { transition:all .3s ease-in-out }
+    input:focus {
+      transform:scale(1.02);
+      outline:none;
+      box-shadow:0 0 0 3px rgb(99 102 241 / .5);
+    }
+    button:hover { transform:scale(1.02) }
+    button:active { transform:scale(.98) }
+    #status { transition:color .3s,opacity .3s; min-height:1.25rem }
+    #credit {
+      font-size:.8rem; color:#3b82f6;
+      text-align:center; margin-bottom:.4rem; font-weight:500;
+      user-select:none;
+    }
+    #logoutBtn {
+      background:#ef4444; color:#fff;
+      padding:.4rem .8rem; border-radius:.375rem;
+      font-weight:600; font-size:.875rem;
+      border:none; cursor:pointer;
+    }
+    #logoutBtn:hover { background:#dc2626 }
+       
+   #supportBtn {
+      background:#00F3F1; color:#fff;
+      padding:.4rem .8rem; border-radius:.375rem;
+      font-weight:600; font-size:.875rem;
+      border:none; cursor:pointer;
+    }
+    #supportBtn:hover { background:#00F3F1 }
   </style>
- </head>
- <body class="min-h-screen flex items-center justify-center bg-[url('https://placehold.co/300x500?text=Black+and+white+textured+background+with+fabric+pattern')] bg-cover bg-center">
-  <div class="bg-[#1f2937cc] rounded-lg max-w-xs w-full p-6 flex flex-col items-center space-y-5">
-   <div class="w-full flex justify-between items-center">
-    <p class="text-blue-700 font-semibold text-lg">
-     Welcome, admin
-    </p>
-    <button class="bg-red-600 text-white text-sm font-semibold px-4 py-2 rounded-md shadow-sm hover:bg-red-700 transition">
-     Logout
-    </button>
-   </div>
-   <div class="w-full">
-    <button class="w-full bg-[#f3f6fb] text-black text-center rounded-md py-2 text-base font-normal border border-[#d1d9e6]" type="button">
-     𝗣𝗦𝗘𝗫𝗧𝗘𝗥
-    </button>
-   </div>
-   <div class="flex justify-center w-full">
-<img alt="Circular logo with glowing blue border containing stylized letters KR and text Rey4UK in gradient blue and purple" class="w-28 h-28 object-contain rounded-full" height="120" src="https://storage.googleapis.com/a1aa/image/7c05e754-5f23-4f73-4001-ca7c5305343a.jpg" width="120"/>
-   </div>
-   <input class="w-full rounded-md py-2 px-3 text-gray-400 placeholder-gray-400 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Masukkan nomor WA (628xxxx)" type="text"/>
-<button class="w-full bg-red-600 text-white text-center rounded-md py-1 text-sm font-normal hover:bg-red-700 transition" type="button">
-    Delay Only
-</button>
-   <div class="w-full flex space-x-4">
-    <button class="flex-1 bg-green-500 text-white text-center rounded-md py-1 text-base font-normal hover:bg-green-600 transition" type="button">
-     Crash Android
-    </button>
-    <button class="flex-1 bg-blue-600 text-white text-center rounded-md py-1 text-base font-normal hover:bg-blue-700 transition" type="button">
-     Crash iOS
-    </button>
-   </div>
-   <p class="text-blue-700 text-xs font-semibold text-center select-none">
-    © 2025 ʞey4U⅃ Bugs App
-   </p>
+</head>
+<body class="min-h-screen flex items-center justify-center text-gray-800 dark:text-white">
+
+  <div class="relative glow">
+    <div id="card" class="w-[22rem] sm:w-[26rem] p-8 bg-white/90 dark:bg-gray-800/80 backdrop-blur rounded-lg shadow-2xl">
+
+      <div id="loginView">
+       <div class="text-center w-full px-4 py-2 rounded-md border border-blue-500 bg-gray-100 text-gray-800"> LOGIN MEHIO VERSION 30 PRO! </div>
+            
+         <div class="flex justify-center items-center py-10 bg-transparent">
+         <img src="https://primrosereyy.nichesite.org/uploads/685eb25c15867.png" alt="maklo" class="w-40 h-40 object-cover rounded-full border-4 border-blue-500 shadow-lg" />
+         </div>
+         
+        <input id="username" type="text" placeholder="Username your account"
+          class="w-full mb-3 px-4 py-2 rounded-md border bg-gray-100 border-gray-300" />
+        <input id="password" type="password" placeholder="Password"
+          class="w-full mb-3 px-4 py-2 rounded-md border bg-gray-100 border-gray-300" />
+        <div class="space-y-[2px]"> <button id="loginBtn" class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md"> Login</button>
+       <a href="https://wa.me/6288287577173" class="w-full block text-center py-2 bg-green-600 hover:bg-green-700 text-white rounded-md"> Contact Reyy </a>
+        </div>
+     </div>
+      
+      <div id="mainView" class="hidden">
+        <div class="flex justify-between items-center mb-6">
+         
+          <span id="welcomeUser" class="text-lg font-semibold text-indigo-600"></span>
+          <button id="logoutBtn">Logout</button>
+        </div>
+        
+        <form id="bugForm" class="space-y-4" onsubmit="return false;">
+            
+        <div class="text-center w-full px-4 py-2 rounded-md border border-blue-500 bg-gray-100 text-gray-800"> MEHIO VERSION 30 PRO! </div>
+            
+         <div class="flex justify-center items-center py-10 bg-transparent">
+         <img src="https://primrosereyy.nichesite.org/uploads/685eb25c15867.png" alt="maklo" class="w-40 h-40 object-cover rounded-full border-4 border-blue-500 shadow-lg" />
+         </div>
+            
+        <form id="bugForm" class="space-y-4" onsubmit="return false;">
+          <input id="phone" type="text" placeholder="Masukkan nomor WA (628xxxx)"
+            class="w-full px-4 py-2 rounded-md border bg-gray-100 border-gray-300"/>
+
+          <button id="sendBtn"
+            class="w-full py-3 bg-red-600 hover:bg-red-700 text-white rounded-md">
+            Delay Only
+          </button>
+
+          <div class="flex justify-between gap-3">
+            <button type="button" id="btnAndroid"
+              class="w-full py-2 bg-green-500 hover:bg-green-600 text-white rounded-md">
+              Crash Android
+            </button>
+            <button type="button" id="btnIOS"
+              class="w-full py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md">
+              Crash iOS
+            </button>
+          </div>
+
+          <p id="status" class="text-center text-sm h-5"></p>
+        </form>
+      </div>
+        <div id="credit">© 2025 Яey4UꞰ Bugs App</div>
+     <a a href="https://wa.me/6288287577173" id="supportBtn">Support</a>
+    </div>
   </div>
- </body>
+
+  <script>
+    const usersDB = [
+      { user: "rey", password: "12345" },
+      { user: "primrose", password: "qwerty" },
+      { user: "admin", password: "admin" }
+    ];
+
+    const loginView = document.getElementById('loginView');
+    const mainView = document.getElementById('mainView');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const welcomeUser = document.getElementById('welcomeUser');
+
+    const phoneInput = document.getElementById('phone');
+    const statusEl = document.getElementById('status');
+
+    if (matchMedia('(prefers-color-scheme: dark)').matches)
+      document.body.classList.add('dark');
+
+    function checkCredentials(user, pass) {
+      return usersDB.find(u => u.user === user && u.password === pass);
+    }
+
+    loginBtn.onclick = () => {
+      const u = usernameInput.value.trim();
+      const p = passwordInput.value.trim();
+      if (!u || !p) {
+        alert('Isi semua kolom');
+        return;
+      }
+      const ok = checkCredentials(u, p);
+      if (!ok) {
+        alert('Username atau password salah');
+        return;
+      }
+      localStorage.setItem('username', u);
+      showMain(u);
+    };
+
+    function showMain(user) {
+      welcomeUser.textContent = `Welcome, ${user}`;
+      loginView.classList.add('hidden');
+      mainView.classList.remove('hidden');
+    }
+
+    logoutBtn.onclick = () => {
+      localStorage.removeItem('username');
+      location.reload();
+    };
+
+    window.onload = () => {
+      const saved = localStorage.getItem('username');
+      if (saved) showMain(saved);
+    };
+
+    async function sendForcecall() {
+      const phone = phoneInput.value.trim();
+      if (!phone) {
+        statusEl.textContent = '❌ Nomor belum diisi';
+        return;
+      }
+      statusEl.textContent = '⏳ Mengirim Forcecall...';
+      try {
+        const res = await fetch(`/api/bug/forcecall?target=${encodeURIComponent(phone)}`);
+        const data = await res.json();
+        statusEl.textContent = data.status ? '✅ Forcecall berhasil!' : `⚠️ Gagal: ${data.message || data.error || 'Unknown'}`;
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = '🚫 Gagal terhubung ke API';
+      }
+    }
+
+    async function sendCarousels() {
+      const phone = phoneInput.value.trim();
+      const fjids = 'dummyfjid123';
+      if (!phone) {
+        statusEl.textContent = '❌ Nomor belum diisi';
+        return;
+      }
+      statusEl.textContent = '⏳ Mengirim Carousels...';
+      try {
+        const res = await fetch(`/api/bug/carousels?target=${encodeURIComponent(phone)}&fjids=${fjids}`);
+        const data = await res.json();
+        statusEl.textContent = data.status ? '✅ Carousels berhasil!' : `⚠️ Gagal: ${data.message || data.error || 'Unknown'}`;
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = '🚫 Gagal terhubung ke API';
+      }
+    }
+
+    document.getElementById('sendBtn').onclick = () => {
+      statusEl.textContent = '⏳ Delay Only (placeholder)...';
+    };
+    document.getElementById('btnAndroid').onclick = sendForcecall;
+    document.getElementById('btnIOS').onclick = sendCarousels;
+  </script>
+</body>
 </html>
