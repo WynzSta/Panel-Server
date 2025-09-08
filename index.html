@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Blood Wolf - Login</title>
+  <meta charset="UTF-8">
+  <title>Web Demo</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -11,176 +10,94 @@
       color: white;
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-    }
-    .login-container {
+      min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
-      text-align: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
     }
-    .login-box {
-      background-color: #1a1a1a;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
-      width: 300px;
+
+    /* Garis merah animasi */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 0, 0, 0.2) 0,
+        rgba(255, 0, 0, 0.2) 2px,
+        transparent 2px,
+        transparent 20px
+      );
+      animation: moveLines 8s linear infinite;
+      z-index: 0;
     }
-    .login-box h2 {
-      color: #e53e3e;
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-      font-weight: bold;
+
+    @keyframes moveLines {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-40px); }
     }
-    .login-box input {
-      width: 100%;
-      padding: 8px;
-      margin: 10px 0;
-      border-radius: 6px;
-      border: 1px solid #555;
-      background: #222;
-      color: #ddd;
-      text-align: center;
-    }
-    .login-box input:focus {
-      outline: none;
-      border-color: #888;
-      background: #333;
-      color: white;
-    }
-    .login-box button {
-      width: 100%;
-      padding: 10px;
-      background: #e53e3e;
-      border: none;
-      border-radius: 8px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .login-box button:hover {
-      background: #c53030;
-    }
-    /* Halaman utama disembunyikan dulu */
-    #mainPage {
-      display: none;
+
+    .container {
+      position: relative;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
-  <!-- LOGIN PAGE -->
-  <div id="loginPage" class="login-container">
-    <div class="login-box">
-      <h2>Login Blood Wolf</h2>
-      <input type="text" id="username" placeholder="Username" />
-      <input type="password" id="password" placeholder="Password" />
-      <button onclick="login()">Login</button>
-      <p id="errorMsg" style="color:#f87171; font-size:0.9rem; margin-top:10px;"></p>
-    </div>
+
+  <!-- LOGIN / REGISTER PAGE -->
+  <div id="authPage" class="container bg-gray-800 p-6 rounded-2xl shadow-lg w-80">
+    <h2 class="text-2xl font-bold text-center mb-4">Login / Register</h2>
+    <input id="username" type="text" placeholder="Username" class="w-full mb-3 p-2 rounded bg-gray-700 border border-gray-600">
+    <input id="password" type="password" placeholder="Password" class="w-full mb-3 p-2 rounded bg-gray-700 border border-gray-600">
+    <button onclick="login()" class="w-full bg-blue-500 hover:bg-blue-600 p-2 rounded font-bold">Masuk</button>
+    <p class="text-sm text-center mt-3">Belum punya akun? <span class="text-yellow-400 cursor-pointer" onclick="register()">Register</span></p>
   </div>
 
   <!-- MAIN PAGE -->
-  <div id="mainPage">
-    <div class="header">BLOOD WOLF</div>
-    <div class="header-line"></div>
-
-    <div class="container">
-      <img
-        src="https://files.catbox.moe/ayjsrv.jpg"
-        alt="Wide horizontal photo"
-        class="long-photo"
-      />
-
-      <div class="input-section">
-        <label for="numberInput">Input Number:</label>
-        <input type="number" id="numberInput" placeholder="Type a number" min="0" />
-        <button onclick="showChoices()">Click -Type</button>
-      </div>
-
-      <div id="choicesSection" class="choices">
-        <h3>Avaible Bugs:</h3>
-        <div id="choicesList"></div>
-      </div>
-    </div>
-
-    <!-- Success Overlay -->
-    <div id="successOverlay">
-      <div class="success-notification">
-        <strong>Success!</strong><br>꓄ꋬꋪꍌꏂ꓄ ꒤꒯ꋬꁝ ꂵꋬ꓄꒐
-      </div>
-    </div>
+  <div id="mainPage" class="hidden container flex flex-col items-center bg-gray-800 p-6 rounded-2xl shadow-lg w-96">
+    <img src="https://i.pravatar.cc/150" alt="Avatar" class="w-32 h-32 rounded-full border-4 border-red-500 mb-4">
+    <input id="nomorInput" type="number" placeholder="Masukkan nomor" class="w-full mb-3 p-2 rounded bg-gray-700 border border-gray-600">
+    <button onclick="pilih()" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded mb-3 w-full">Pilih</button>
+    <p id="hasil" class="text-yellow-300 mb-3"></p>
+    <button onclick="pencet()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded w-full">Pencet</button>
+    <p id="status" class="text-green-400 font-bold mt-3"></p>
   </div>
 
   <script>
-    // LOGIN FUNCTION
     function login() {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
-      const errorMsg = document.getElementById("errorMsg");
-
-      // Login sederhana: username = admin, password = 12345
-      if (user === "admin" && pass === "12345") {
-        document.getElementById("loginPage").style.display = "none";
-        document.getElementById("mainPage").style.display = "block";
+      let user = document.getElementById("username").value;
+      let pass = document.getElementById("password").value;
+      if(user && pass){
+        document.getElementById("authPage").classList.add("hidden");
+        document.getElementById("mainPage").classList.remove("hidden");
       } else {
-        errorMsg.textContent = "Username atau Password salah!";
+        alert("Isi username dan password!");
       }
     }
 
-    // === SCRIPT HALAMAN UTAMA ===
-    function showChoices() {
-      const inputValue = document.getElementById("numberInput").value;
-      const choicesSection = document.getElementById("choicesSection");
-      const choicesList = document.getElementById("choicesList");
-
-      if (inputValue === "") {
-        alert("Masukan Nomer Dulu.");
-        return;
-      }
-
-      const number = parseInt(inputValue, 10);
-      choicesList.innerHTML = "";
-
-      let options = [
-        {
-          label: "👾 𝗜𝗡𝗙𝗜𝗡𝗜𝗧𝗬 𝗖𝗥𝗔𝗦𝗛",
-          description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗧𝗢 𝗔𝗡𝗗𝗥𝗢𝗜𝗗 & 𝗜𝗣𝗛𝗢𝗡𝗘.",
-        },
-        {
-          label: "👾 𝗙𝗢𝗥𝗖𝗘 𝗖𝗟𝗢𝗦𝗘",
-          description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗡𝗗𝗥𝗢 𝟵-𝟭𝟮.",
-        },
-        {
-          label: "👾 𝗗𝗘𝗟𝗔𝗬",
-          description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗟𝗟 𝗔𝗡𝗗𝗥𝗢.",
-        },
-      ];
-
-      options.forEach((option) => {
-        const div = document.createElement("div");
-        div.className = "choice-option";
-        div.innerHTML = `<strong>${option.label}</strong><br>${option.description}`;
-        div.onclick = function() { selectChoice(option.label); };
-        choicesList.appendChild(div);
-      });
-
-      choicesSection.style.display = "block";
+    function register() {
+      alert("Register berhasil! Silakan login dengan akun baru.");
     }
 
-    function selectChoice(label) {
-      document.getElementById("successOverlay").style.display = "flex";
-      setTimeout(() => {
-        document.getElementById("successOverlay").style.display = "none";
-        try {
-          window.close();
-        } catch (e) {
-          alert("Page cannot be closed automatically. Please close the tab manually.");
-        }
-      }, 3000);
+    function pilih() {
+      let nomor = document.getElementById("nomorInput").value;
+      if(nomor){
+        document.getElementById("hasil").innerText = "Kamu memilih nomor: " + nomor;
+      } else {
+        document.getElementById("hasil").innerText = "Isi nomor dulu!";
+      }
+    }
+
+    function pencet() {
+      document.getElementById("status").innerText = "✅ Success!";
     }
   </script>
+
 </body>
 </html>
