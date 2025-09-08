@@ -1,104 +1,105 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Web Demo</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background-color: black;
-      color: white;
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Garis merah animasi */
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: repeating-linear-gradient(
-        45deg,
-        rgba(255, 0, 0, 0.2) 0,
-        rgba(255, 0, 0, 0.2) 2px,
-        transparent 2px,
-        transparent 20px
-      );
-      animation: moveLines 8s linear infinite;
-      z-index: 0;
-    }
-
-    @keyframes moveLines {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-40px); }
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Form Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: black; /* latar belakang hitam */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .profile-img {
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        .custom-button {
+            background: #4f46e5;
+            color: white;
+            border: 2px solid red; /* garis merah */
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .custom-button:hover {
+            background: #3730a3;
+            border-color: #ff4d4d; /* merah terang */
+        }
+        .success-message {
+            margin-top: 20px;
+            color: #0f0;
+            font-size: 24px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+        @media (max-width: 640px) {
+            .profile-img {
+                width: 96px;
+                height: 96px;
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="text-white">
+    <div class="bg-white bg-opacity-10 backdrop-blur-md p-8 rounded-2xl shadow-2xl max-w-md w-full">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold mb-4">Profile Interactive</h1>
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4bb8611e-cd7f-4875-8229-44bd15931ab7.png" 
+                 alt="Circular profile photo" class="profile-img mx-auto"/>
+            <input type="number" id="numberInput" placeholder="Enter a number" 
+                   class="w-full p-3 mt-6 rounded-lg border border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 bg-black text-white" 
+                   min="1" max="100"/>
+        </div>
+        
+        <div class="text-center mb-6">
+            <p class="mb-4 text-lg">Choose an option:</p>
+            <!-- Ganti radio jadi dropdown -->
+            <select id="optionsSelect" 
+                class="w-full p-3 rounded-lg border border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 bg-black text-white">
+                <option value="">-- Select Color --</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+                <option value="yellow">Yellow</option>
+            </select>
+        </div>
+        
+        <div class="text-center">
+            <button id="submitBtn" class="custom-button">Submit</button>
+            <div id="successMessage" class="success-message">Success!</div>
+        </div>
+    </div>
 
-  <!-- LOGIN / REGISTER PAGE -->
-  <div id="authPage" class="container bg-gray-800 p-6 rounded-2xl shadow-lg w-[90%] max-w-sm sm:max-w-md">
-    <h2 class="text-xl sm:text-2xl font-bold text-center mb-4">Login / Register</h2>
-    <input id="username" type="text" placeholder="Username" class="w-full mb-3 p-2 rounded bg-gray-700 border border-gray-600 text-sm sm:text-base">
-    <input id="password" type="password" placeholder="Password" class="w-full mb-3 p-2 rounded bg-gray-700 border border-gray-600 text-sm sm:text-base">
-    <button onclick="login()" class="w-full bg-blue-500 hover:bg-blue-600 p-2 rounded font-bold text-sm sm:text-base">Masuk</button>
-    <p class="text-xs sm:text-sm text-center mt-3">Belum punya akun? 
-      <span class="text-yellow-400 cursor-pointer" onclick="register()">Register</span>
-    </p>
-  </div>
-
-  <!-- MAIN PAGE -->
-  <div id="mainPage" class="hidden container flex flex-col items-center bg-gray-800 p-6 rounded-2xl shadow-lg w-[90%] max-w-sm sm:max-w-md">
-    <img src="https://i.pravatar.cc/150" alt="Avatar" class="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-red-500 mb-4">
-    <input id="nomorInput" type="number" placeholder="Masukkan nomor" class="w-full mb-3 p-2 rounded bg-gray-700 border border-gray-600 text-sm sm:text-base">
-    <button onclick="pilih()" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded mb-3 w-full text-sm sm:text-base">Pilih</button>
-    <p id="hasil" class="text-yellow-300 mb-3 text-sm sm:text-base"></p>
-    <button onclick="pencet()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded w-full text-sm sm:text-base">Pencet</button>
-    <p id="status" class="text-green-400 font-bold mt-3 text-sm sm:text-base"></p>
-  </div>
-
-  <script>
-    function login() {
-      let user = document.getElementById("username").value;
-      let pass = document.getElementById("password").value;
-      if(user && pass){
-        document.getElementById("authPage").classList.add("hidden");
-        document.getElementById("mainPage").classList.remove("hidden");
-      } else {
-        alert("Isi username dan password!");
-      }
-    }
-
-    function register() {
-      alert("Register berhasil! Silakan login dengan akun baru.");
-    }
-
-    function pilih() {
-      let nomor = document.getElementById("nomorInput").value;
-      if(nomor){
-        document.getElementById("hasil").innerText = "Kamu memilih nomor: " + nomor;
-      } else {
-        document.getElementById("hasil").innerText = "Isi nomor dulu!";
-      }
-    }
-
-    function pencet() {
-      document.getElementById("status").innerText = "✅ Success!";
-    }
-  </script>
-
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const numberInput = document.getElementById('numberInput').value;
+            const selectedOption = document.getElementById('optionsSelect').value;
+            
+            if (numberInput && selectedOption) {
+                const successMessage = document.getElementById('successMessage');
+                successMessage.style.display = 'block';
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 3000); // Hide after 3 seconds
+            } else {
+                alert('Please enter a number and select an option.');
+            }
+        });
+    </script>
 </body>
 </html>
