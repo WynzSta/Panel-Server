@@ -85,9 +85,20 @@
       <button id="logoutBtn" class="custom-button w-full">Logout</button>
       <div id="successMessage" class="success-message">Success!</div>
     </div>
+
+    <!-- FITUR TAMBAHAN -->
+    <div class="mt-8 p-4 rounded-xl bg-black bg-opacity-50 border border-gray-600">
+      <h2 class="text-xl font-bold mb-4 text-center">📊 Web Info</h2>
+      <p id="regionInfo" class="mb-2">🌍 Regional Web: ...</p>
+      <p id="activeTime" class="mb-2">🕒 Waktu Aktif Web: 0 detik</p>
+      <p id="deviceStatus" class="mb-2">📱 Device: ON</p>
+      <p id="localTime">⏰ Jam Lokal: ...</p>
+    </div>
   </div>
 
   <script>
+    let startTime;
+
     // Tombol Login
     document.getElementById('loginBtn').addEventListener('click', function() {
       const user = document.getElementById('username').value;
@@ -96,6 +107,13 @@
       if (user && pass) {
         document.getElementById('loginPage').classList.add('hidden');
         document.getElementById('profilePage').classList.remove('hidden');
+        
+        // set awal waktu aktif
+        startTime = Date.now();
+
+        // tampilkan regional
+        const region = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        document.getElementById('regionInfo').innerText = "🌍 Regional Web: " + region;
       } else {
         alert('Please enter username and password!');
       }
@@ -121,10 +139,20 @@
     document.getElementById('logoutBtn').addEventListener('click', function() {
       document.getElementById('profilePage').classList.add('hidden');
       document.getElementById('loginPage').classList.remove('hidden');
-      // reset input login
       document.getElementById('username').value = '';
       document.getElementById('password').value = '';
     });
+
+    // Update waktu aktif & jam lokal setiap detik
+    setInterval(() => {
+      if (startTime) {
+        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+        document.getElementById('activeTime').innerText = "🕒 Waktu Aktif Web: " + elapsed + " detik";
+      }
+      const now = new Date();
+      const timeString = now.toLocaleTimeString();
+      document.getElementById('localTime').innerText = "⏰ Jam Lokal: " + timeString;
+    }, 1000);
   </script>
 </body>
 </html>
