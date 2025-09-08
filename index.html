@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Blood Wolf -App Bug</title>
+  <title>Blood Wolf - Login</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -13,166 +13,124 @@
       margin: 0;
       padding: 0;
     }
-    .header {
-      text-align: center;
-      padding: 20px 0 10px 0;
-      color: #e53e3e; /* red-600 */
-      font-weight: bold;
-      font-size: 2rem;
-      letter-spacing: 2px;
-      user-select: none;
-    }
-    .header-line {
-      width: 80%;
-      height: 3px;
-      background: linear-gradient(90deg, #888888, #cccccc, #888888);
-      margin: 0 auto 30px auto;
-      border-radius: 2px;
-      box-shadow: 0 0 8px 1px rgba(204, 204, 204, 0.7);
-    }
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 0 20px 20px 20px;
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       text-align: center;
     }
-    .long-photo {
-      width: 600px;
-      height: 200px;
-      object-fit: cover;
+    .login-box {
+      background-color: #1a1a1a;
+      padding: 30px;
       border-radius: 12px;
-      margin-bottom: 20px;
-      border: 3px solid;
-      border-image-slice: 1;
-      border-width: 3px;
-      border-image-source: linear-gradient(45deg, #888888, #cccccc, #888888);
-      box-shadow: 0 0 10px 2px rgba(200, 200, 200, 0.5);
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+      width: 300px;
     }
-    .input-section {
+    .login-box h2 {
+      color: #e53e3e;
+      font-size: 1.5rem;
       margin-bottom: 20px;
+      font-weight: bold;
     }
-    #numberInput {
-      width: 200px; /* diperpanjang */
-      padding: 6px 12px;
-      font-size: 0.9rem;
+    .login-box input {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
       border-radius: 6px;
-      border: 1.5px solid #888888;
-      background-color: #222222;
-      color: #ccc;
+      border: 1px solid #555;
+      background: #222;
+      color: #ddd;
       text-align: center;
-      transition: border-color 0.3s;
     }
-    #numberInput:focus {
+    .login-box input:focus {
       outline: none;
-      border-color: #bbb;
-      background-color: #333333;
+      border-color: #888;
+      background: #333;
       color: white;
     }
-    button {
-      margin-left: 12px;
-      padding: 6px 14px; /* diperkecil */
-      font-size: 0.85rem; /* diperkecil */
-      background-color: #888888; /* abu-abu */
+    .login-box button {
+      width: 100%;
+      padding: 10px;
+      background: #e53e3e;
       border: none;
       border-radius: 8px;
       color: white;
+      font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background 0.3s;
     }
-    button:hover {
-      background-color: #666666; /* abu-abu lebih gelap saat hover */
+    .login-box button:hover {
+      background: #c53030;
     }
-    .choices {
+    /* Halaman utama disembunyikan dulu */
+    #mainPage {
       display: none;
-      margin-top: 20px;
-      font-size: 0.9rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: left;
-    }
-    .choice-option {
-      background-color: #333333;
-      padding: 8px 12px;
-      margin: 6px 0;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      font-size: 0.9rem;
-      color: #ddd;
-    }
-    .choice-option:hover {
-      background-color: #555555;
-    }
-    label {
-      font-size: 1rem;
-      margin-bottom: 6px;
-      display: block;
-      color: #bbb;
-    }
-    /* Overlay for success notification like mobile */
-    #successOverlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
-    .success-notification {
-      background-color: #4CAF50;
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      text-align: center;
-      font-size: 1.1rem;
     }
   </style>
 </head>
 <body>
-  <div class="header">BLOOD WOLF</div>
-  <div class="header-line"></div>
-
-  <div class="container">
-    <img
-      src="https://files.catbox.moe/ayjsrv.jpg"
-      alt="Wide horizontal photo with dark background and subtle light reflections for interactive web display"
-      class="long-photo"
-    />
-
-    <div class="input-section">
-      <label for="numberInput">Input Number:</label>
-      <input
-        type="number"
-        id="numberInput"
-        placeholder="Type a number"
-        min="0"
-      />
-      <button onclick="showChoices()">Click -Type</button>
-    </div>
-
-    <div id="choicesSection" class="choices">
-      <h3>Avaible Bugs:</h3>
-      <div id="choicesList"></div>
+  <!-- LOGIN PAGE -->
+  <div id="loginPage" class="login-container">
+    <div class="login-box">
+      <h2>Login Blood Wolf</h2>
+      <input type="text" id="username" placeholder="Username" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+      <p id="errorMsg" style="color:#f87171; font-size:0.9rem; margin-top:10px;"></p>
     </div>
   </div>
 
-  <!-- Success Overlay -->
-  <div id="successOverlay">
-    <div class="success-notification">
-      <strong>Success!</strong><br>꓄ꋬꋪꍌꏂ꓄ ꒤꒯ꋬꁝ ꂵꋬ꓄꒐
+  <!-- MAIN PAGE -->
+  <div id="mainPage">
+    <div class="header">BLOOD WOLF</div>
+    <div class="header-line"></div>
+
+    <div class="container">
+      <img
+        src="https://files.catbox.moe/ayjsrv.jpg"
+        alt="Wide horizontal photo"
+        class="long-photo"
+      />
+
+      <div class="input-section">
+        <label for="numberInput">Input Number:</label>
+        <input type="number" id="numberInput" placeholder="Type a number" min="0" />
+        <button onclick="showChoices()">Click -Type</button>
+      </div>
+
+      <div id="choicesSection" class="choices">
+        <h3>Avaible Bugs:</h3>
+        <div id="choicesList"></div>
+      </div>
+    </div>
+
+    <!-- Success Overlay -->
+    <div id="successOverlay">
+      <div class="success-notification">
+        <strong>Success!</strong><br>꓄ꋬꋪꍌꏂ꓄ ꒤꒯ꋬꁝ ꂵꋬ꓄꒐
+      </div>
     </div>
   </div>
 
   <script>
+    // LOGIN FUNCTION
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      const errorMsg = document.getElementById("errorMsg");
+
+      // Login sederhana: username = admin, password = 12345
+      if (user === "admin" && pass === "12345") {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("mainPage").style.display = "block";
+      } else {
+        errorMsg.textContent = "Username atau Password salah!";
+      }
+    }
+
+    // === SCRIPT HALAMAN UTAMA ===
     function showChoices() {
       const inputValue = document.getElementById("numberInput").value;
       const choicesSection = document.getElementById("choicesSection");
@@ -186,53 +144,20 @@
       const number = parseInt(inputValue, 10);
       choicesList.innerHTML = "";
 
-      let options;
-      if (number < 5) {
-        options = [
-          {
-            label: "👾 𝗜𝗡𝗙𝗜𝗡𝗜𝗧𝗬 𝗖𝗥𝗔𝗦𝗛",
-            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗧𝗢 𝗔𝗡𝗗𝗥𝗢𝗜𝗗 & 𝗜𝗣𝗛𝗢𝗡𝗘.",
-          },
-          {
-            label: "👾 𝗙𝗢𝗥𝗖𝗘 𝗖𝗟𝗢𝗦𝗘",
-            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗡𝗗𝗥𝗢 𝟵-𝟭𝟮.",
-          },
-          {
-            label: "👾 𝗗𝗘𝗟𝗔𝗬",
-            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗟𝗟 𝗔𝗡𝗗𝗥𝗢.",
-          },
-        ];
-      } else if (number < 10) {
-        options = [
-          {
-            label: "👾 𝗜𝗡𝗙𝗜𝗡𝗜𝗧𝗬 𝗖𝗥𝗔𝗦𝗛",
-            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗧𝗢 𝗔𝗡𝗗𝗥𝗢𝗜𝗗 & 𝗜𝗣𝗛𝗢𝗡𝗘.",
-          },
-          {
-            label: "👾 𝗙𝗢𝗥𝗖𝗘 𝗖𝗟𝗢𝗦𝗘",
-            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗡𝗗𝗥𝗢 𝟵-𝟭𝟮.",
-          },
-          {
-            label: "👾 𝗗𝗘𝗟𝗔𝗬",
-            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗟𝗟 𝗔𝗡𝗗𝗥𝗢.",
-          },
-        ];
-      } else {
-        options = [
-          {
-            label: "👾 𝗜𝗡𝗙𝗜𝗡𝗜𝗧𝗬 𝗖𝗥𝗔𝗦𝗛",
-            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗧𝗢 𝗔𝗡𝗗𝗥𝗢𝗜𝗗 & 𝗜𝗣𝗛𝗢𝗡𝗘.",
-          },
-          {
-            label: "👾 𝗙𝗢𝗥𝗖𝗘 𝗖𝗟𝗢𝗦𝗘",
-            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗡𝗗𝗥𝗢 𝟵-𝟭𝟮.",
-          },
-          {
-            label: "👾 𝗗𝗘𝗟𝗔𝗬",
-            description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗟𝗟 𝗔𝗡𝗗𝗥𝗢.",
-          },
-        ];
-      }
+      let options = [
+        {
+          label: "👾 𝗜𝗡𝗙𝗜𝗡𝗜𝗧𝗬 𝗖𝗥𝗔𝗦𝗛",
+          description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗧𝗢 𝗔𝗡𝗗𝗥𝗢𝗜𝗗 & 𝗜𝗣𝗛𝗢𝗡𝗘.",
+        },
+        {
+          label: "👾 𝗙𝗢𝗥𝗖𝗘 𝗖𝗟𝗢𝗦𝗘",
+          description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗡𝗗𝗥𝗢 𝟵-𝟭𝟮.",
+        },
+        {
+          label: "👾 𝗗𝗘𝗟𝗔𝗬",
+          description: "𝗧𝗔𝗥𝗚𝗘𝗧 𝗔𝗟𝗟 𝗔𝗡𝗗𝗥𝗢.",
+        },
+      ];
 
       options.forEach((option) => {
         const div = document.createElement("div");
@@ -246,13 +171,9 @@
     }
 
     function selectChoice(label) {
-      // Show success overlay like a mobile notification
       document.getElementById("successOverlay").style.display = "flex";
-
-      // Hide overlay after 3 seconds and try to close the page
       setTimeout(() => {
         document.getElementById("successOverlay").style.display = "none";
-        // Attempt to close the window (works only if opened by script)
         try {
           window.close();
         } catch (e) {
