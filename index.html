@@ -1,215 +1,276 @@
 <!doctype html>
-
 <html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DarkVerse — Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Brother — Demo Dashboard</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#0b0b0f;
-      --card:#0f0f13;
-      --muted:#2a2a33;
-      --accent-1:#6f2bd6;
-      --accent-2:#a86cff;
-      --glass: rgba(255,255,255,0.03);
-      --radius:16px;
-      --soft-shadow: 0 6px 18px rgba(0,0,0,0.6);
-      --neon: 0 0 20px rgba(168,108,255,0.18);
+      --bg:#000;
+      --panel:#0b0b0b;
+      --muted:#9aa0a6;
+      --accent:#e6f6ff;
+      --neon:#f2f0ff;
+      --glow: 0 8px 30px rgba(0,0,0,0.7);
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
-      font-family:'Poppins',system-ui,Segoe UI,Roboto,Arial;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(110,48,210,0.06), transparent),
-                  radial-gradient(800px 400px at 90% 90%, rgba(168,108,255,0.03), transparent),
-                  var(--bg);
-      color:#ddd;
+      font-family: "Rubik", sans-serif;
+      background:linear-gradient(0deg,#000,#050505 60%);
+      color:var(--neon);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      padding-bottom:84px; /* for bottom nav */
-    }.container{max-width:920px;margin:28px auto;padding:20px}
+      min-height:100vh;
+    }
 
-/* Header */
-.header{display:flex;align-items:center;gap:14px}
-.menu-btn{width:42px;height:42px;border-radius:10px;background:linear-gradient(180deg,var(--card),#0c0c10);display:flex;align-items:center;justify-content:center;box-shadow:var(--soft-shadow)}
-.brand{font-family:'Orbitron',sans-serif;color:var(--accent-2);letter-spacing:2px}
-.profile{margin-left:auto;display:flex;align-items:center;gap:12px}
-.avatar{width:84px;height:84px;border-radius:999px;overflow:hidden;border:4px solid rgba(168,108,255,0.12);box-shadow:var(--neon)}
-.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    /* Layout */
+    .app {
+      display:flex;
+      min-height:100vh;
+    }
+    /* Sidebar */
+    .sidebar {
+      width:84px;
+      background:linear-gradient(180deg,#060606 0%, #0b0b0b 100%);
+      padding:24px 12px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:20px;
+      border-right:1px solid rgba(255,255,255,0.03);
+    }
+    .hamburger{
+      width:36px;height:36px;border-radius:8px;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(255,255,255,0.02);backdrop-filter:blur(2px);
+      cursor:pointer;
+    }
+    .hamburger:after{
+      content:"≡";font-family: 'Orbitron',sans-serif;
+      font-size:18px;color:rgba(255,255,255,0.6);
+    }
 
-/* Card */
-.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);padding:18px;margin-top:18px;box-shadow:var(--soft-shadow);border:1px solid rgba(255,255,255,0.02)}
-.hero{height:200px;border-radius:12px;overflow:hidden;background-size:cover;background-position:center;border:1px solid rgba(255,255,255,0.03)}
-.role-pill{display:inline-block;margin-top:12px;padding:8px 14px;border-radius:40px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:#0b0b0f;font-weight:600;font-size:13px}
+    /* Main panel */
+    .main{
+      flex:1;padding:28px 28px 80px 28px;
+      display:flex;flex-direction:column;gap:18px;
+    }
+    header.topbar{
+      display:flex;align-items:center;gap:18px;
+    }
+    .logo{
+      display:flex;flex-direction:column;gap:4px;
+      align-items:flex-start;
+    }
+    .logo h1{
+      margin:0;font-family:'Orbitron',sans-serif;font-weight:400;
+      font-size:20px;letter-spacing:1px;color:#fff;
+      text-shadow:0 0 8px rgba(255,255,255,0.06);
+    }
+    .logo p{margin:0;font-size:12px;color:var(--muted)}
 
-/* Form */
-.field{margin-top:18px}
-label.title{display:block;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));padding:10px;border-radius:12px;font-weight:600}
-.input{margin-top:8px;background:var(--card);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);display:flex;gap:8px;align-items:center}
-.input input, .input select{flex:1;background:transparent;border:0;outline:none;color:#ddd;font-size:15px}
-.input .icon{opacity:0.65}
+    /* card */
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      padding:18px;border-radius:12px;box-shadow:var(--glow);
+      color:var(--neon);
+    }
 
-.btn-primary{margin-top:14px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));border:0;padding:12px 16px;border-radius:12px;color:#08060b;font-weight:700;cursor:pointer;box-shadow:var(--neon)}
+    /* Dashboard top */
+    .profile{
+      display:flex;align-items:center;gap:18px;
+    }
+    .avatar{
+      width:92px;height:92px;border-radius:10px;overflow:hidden;
+      background:linear-gradient(135deg,#0b0b0b,#080808);
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 8px 30px rgba(0,0,0,0.8);
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover;filter:contrast(1.1) saturate(.9)}
 
-/* Bottom nav */
-.bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;width:min(960px,94%);height:64px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:999px;display:flex;align-items:center;justify-content:space-around;padding:8px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(0,0,0,0.6)}
-.nav-item{flex:1;text-align:center;color:#cfc9d8;font-size:13px}
-.nav-item.active{color:var(--accent-2)}
-.nav-item svg{display:block;margin:0 auto 4px}
+    .userinfo{
+      display:flex;flex-direction:column;gap:8px;
+    }
+    .userinfo .line{display:flex;gap:12px;align-items:center;font-size:14px}
+    .label{width:90px;color:var(--muted);font-size:13px}
+    .value{font-family:'Orbitron',sans-serif;font-size:15px;color:#fff}
 
-/* Tools list */
-.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
-.tool{background:var(--glass);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
-.tool h4{margin:0 0 6px 0}
+    /* Attack menu area */
+    .attack-wrap{display:flex;gap:20px;flex-direction:column}
+    .target-input{
+      display:flex;flex-direction:column;gap:10px;
+    }
+    .target-input input[type="text"]{
+      padding:18px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.06);
+      color:var(--neon);outline:none;font-size:15px;font-family:'Rubik',sans-serif;
+      box-shadow:0 6px 20px rgba(0,0,0,0.6), inset 0 0 16px rgba(255,255,255,0.01);
+    }
+    .select-list{
+      margin-top:6px;background:linear-gradient(180deg,#070707,#0a0a0a);
+      border-radius:10px;padding:8px;border:1px solid rgba(255,255,255,0.03);
+      max-width:420px;
+    }
+    .select-item{
+      padding:14px 12px;border-radius:8px;margin-bottom:8px;
+      background:rgba(255,255,255,0.01);cursor:pointer;
+      font-family:'Orbitron',sans-serif;font-size:15px;color:#fff;
+    }
+    .select-item:hover{transform:translateX(6px);transition:all .18s ease}
 
-/* Responsive */
-@media (max-width:640px){
-  .avatar{width:64px;height:64px}
-  .hero{height:160px}
-  .card{padding:14px}
-}
+    /* footer */
+    footer{margin-top:auto;text-align:center;color:var(--muted);font-size:12px}
+
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:60}
+    .modal{background:#0b0b0b;padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);width:92%;max-width:420px}
+    .modal h3{margin:0;font-family:'Orbitron',sans-serif}
+    .btn{
+      display:inline-block;padding:10px 14px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);
+      cursor:pointer;margin-top:12px;color:var(--neon)
+    }
+
+    /* small screens */
+    @media (max-width:760px){
+      .sidebar{display:none}
+      .main{padding:20px}
+      .profile{flex-direction:column;align-items:flex-start}
+    }
 
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <div class="menu-btn" id="menuBtn" title="Menu">
-        <!-- simple hamburger -->
-        <svg width="20" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="2" rx="1" fill="white" opacity="0.85"/><rect x="3" y="11" width="18" height="2" rx="1" fill="white" opacity="0.65"/><rect x="3" y="17" width="12" height="2" rx="1" fill="white" opacity="0.45"/></svg>
-      </div>
-      <div class="brand">DoruZy Crasher</div>
-      <div class="profile">
-        <div style="text-align:right">
-          <div style="font-size:12px;opacity:0.7">Role: <strong>OWNER</strong></div>
-          <div style="font-size:12px;opacity:0.6">Exp: 2028-07-05</div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="hamburger" title="Menu"></div>
+      <!-- icons simplified -->
+      <div style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;font-size:18px">⚙</div>
+      <div style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center">★</div>
+      <div style="margin-top:auto;color:var(--muted);font-size:12px">v2025</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="logo">
+          <h1>BROTHER</h1>
+          <p style="font-size:12px;color:var(--muted)">-Creator by YAYZ-</p>
         </div>
-        <div class="avatar"><img src="https://files.catbox.moe/3asf24.jpg" alt="avatar"/></div>
-      </div>
-    </div><div id="home" class="card" role="main">
-  <div class="hero" style="background-image:url('https://files.catbox.moe/8r3yeo.jpg')"></div>
-  <div class="role-pill">Role: OWNER • Exp: 2045-07-05</div>
+      </header>
 
-  <div class="field">
-    <label class="title">Nomor Target</label>
-    <div class="input">
-      <div class="icon">📱</div>
-      <input id="targetNumber" type="text" placeholder="Contoh: +62xxxxxxxxxxx" />
+      <!-- Dashboard card -->
+      <section class="card profile">
+        <div class="avatar">
+          <!-- placeholder image, replace with your banner -->
+          <img src="https://via.placeholder.com/300x300/0a0a0a/ffffff?text=BROTHER" alt="avatar">
+        </div>
+        <div class="userinfo">
+          <div class="line"><span class="label">Username:</span><span class="value">@KONTOL</span></div>
+          <div class="line"><span class="label">Password:</span><span class="value">******</span></div>
+          <div class="line"><span class="label">Role:</span><span class="value">owner</span></div>
+          <div class="line"><span class="label">Expired:</span><span class="value">9999-08-20</span></div>
+        </div>
+      </section>
+
+      <!-- Attack menu mockup -->
+      <section class="card attack-wrap">
+        <h2 style="font-family:'Orbitron',sans-serif;margin:0 0 8px 0">Select Target & Bug</h2>
+
+        <div class="target-input">
+          <label style="color:var(--muted);font-size:13px">Target number (e.g. +62 812xxxx)</label>
+          <input id="target" type="text" placeholder="+62 8xxxxxxxx" />
+
+          <div class="select-list" id="selectList">
+            <div class="select-item" data-key="crash">BROTHER CRASH</div>
+            <div class="select-item" data-key="delay">BROTHER DELEY INVIS</div>
+            <div class="select-item" data-key="invis">BROTHER INVISIBLE</div>
+            <div class="select-item" data-key="blank">BROTHER BLANK</div>
+            <div class="select-item" data-key="foreclose">BROTHER FORECLOSE</div>
+            <div class="select-item" data-key="bulldozer">BROTHER BULLDOZER</div>
+          </div>
+
+          <div style="display:flex;gap:12px;margin-top:10px">
+            <button id="startBtn" class="btn">Start (Demo)</button>
+            <button id="resetBtn" class="btn">Reset</button>
+          </div>
+        </div>
+
+        <p style="color:var(--muted);margin-top:12px;font-size:13px">
+          Catatan: ini hanya demo tampilan. Semua fungsi non-aktif untuk tujuan keamanan.
+        </p>
+      </section>
+
+      <footer>
+        <div class="card" style="text-align:center;background:transparent;border:none;color:var(--muted);padding:8px">
+          Credits: @brightdayzx &nbsp;&nbsp; | &nbsp;&nbsp; Copyright 2025 by @BrotherXTeam
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Modal (hidden by default) -->
+  <div class="modal-backdrop" id="backdrop">
+    <div class="modal" role="dialog" aria-modal="true">
+      <h3 id="modalTitle">Demo Mode</h3>
+      <p id="modalText" style="color:var(--muted);margin-top:8px">Fitur ini dinonaktifkan pada demo. Kamu bisa gunakan tampilan ini untuk keperluan legal & presentasi.</p>
+      <button class="btn" id="closeModal">Tutup</button>
     </div>
   </div>
 
-  <div class="field">
-    <label class="title">Pilih Bug</label>
-    <div class="input">
-      <div class="icon">🧩</div>
-      <select id="bugSelect">
-        <option>BUG ANDROID</option>
-        <option>BUG IOS</option>
-        <option>BUG WHATSAPP</option>
-        <option>TEST MODE</option>
-      </select>
-    </div>
-  </div>
-
-  <button class="btn-primary" id="sendBtn">Kirim / Generate</button>
-
-  <div id="result" style="margin-top:12px;font-size:14px;opacity:0.85"></div>
-</div>
-
-<div id="tools" class="card" style="display:none">
-  <h3>Tools</h3>
-  <p style="opacity:0.7;margin-top:6px">Kumpulan tools ringan — klik salah satu untuk mencoba.</p>
-  <div class="tools-grid">
-    <div class="tool">
-      <h4>Checker</h4>
-      <p style="margin:0 0 8px 0;opacity:0.8">Memeriksa format nomor dan status sederhana.</p>
-      <button class="btn-primary" onclick="runTool('checker')">Jalankan</button>
-    </div>
-    <div class="tool">
-      <h4>Payload Generator</h4>
-      <p style="margin:0 0 8px 0;opacity:0.8">Membuat payload dummy berdasarkan pilihan bug.</p>
-      <button class="btn-primary" onclick="runTool('payload')">Generate</button>
-    </div>
-    <div class="tool">
-      <h4>Logger</h4>
-      <p style="margin:0 0 8px 0;opacity:0.8">Menampilkan log aktivitas sementara pada browser.</p>
-      <button class="btn-primary" onclick="runTool('logger')">Tampilkan</button>
-    </div>
-  </div>
-
-  <div id="toolsOutput" style="margin-top:12px;font-family:monospace;font-size:13px;white-space:pre-wrap;color:#dcd0ff;opacity:0.95"></div>
-</div>
-
-  </div>  <nav class="bottom-nav" role="navigation" aria-label="Bottom navigation">
-    <div class="nav-item active" data-target="home" onclick="switchTab(event)">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 11.5L12 4l9 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Home
-    </div>
-    <div class="nav-item" onclick="openWhatsApp()" title="WhatsApp">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 12.079c0 4.97-4.03 9-9 9-1.57 0-3.03-.37-4.35-1.02L3 21l1.02-4.66A8.963 8.963 0 0 1 3 12.08c0-4.97 4.03-9 9-9s9 4.03 9 9Z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      WhatsApp
-    </div>
-    <div class="nav-item" data-target="tools" onclick="switchTab(event)">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.4 15.4 21 17" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 7l1.6-1.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Tools
-    </div>
-  </nav>  <script>
-    // Basic tab switching
-    function switchTab(e){
-      const el = e.currentTarget || e.target;
-      const target = el.dataset.target;
-      if(!target) return;
-      document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-      el.classList.add('active');
-      document.getElementById('home').style.display = target==='home'? 'block':'none';
-      document.getElementById('tools').style.display = target==='tools'? 'block':'none';
-    }
-
-    // WhatsApp quick open
-    function openWhatsApp(){
-      const number = document.getElementById('targetNumber').value || '';
-      const text = encodeURIComponent('Halo, saya membutuhkan bantuan. (auto)');
-      // Use preview wa.me link; user can input number in international format
-      const url = number ? `https://wa.me/${number.replace(/[^+0-9]/g,'')}` : `https://wa.me/?text=${text}`;
-      window.open(url, '_blank');
-    }
-
-    // Actions for main form
-    document.getElementById('sendBtn').addEventListener('click',()=>{
-      const num = document.getElementById('targetNumber').value.trim();
-      const bug = document.getElementById('bugSelect').value;
-      const resultEl = document.getElementById('result');
-      if(!num){resultEl.textContent = 'Masukkan nomor target terlebih dahulu.';return}
-      // Simple fake/generate action
-      const payload = `--Payload--\nTarget: ${num}\nMode: ${bug}\nToken: ${btoa(num+bug).slice(0,16)}`;
-      resultEl.textContent = payload;
+  <script>
+    // Interactivity: select items, start button shows modal with chosen item
+    const selectItems = document.querySelectorAll('.select-item');
+    let selected = null;
+    selectItems.forEach(it => {
+      it.addEventListener('click', () => {
+        selectItems.forEach(i => i.style.background = 'rgba(255,255,255,0.01)');
+        it.style.background = 'linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01))';
+        selected = it.dataset.key;
+      });
     });
 
-    // Tools
-    function runTool(name){
-      const out = document.getElementById('toolsOutput');
-      if(name==='checker'){
-        const n = document.getElementById('targetNumber').value.trim();
-        if(!n){out.textContent='Checker: masukkan nomor pada Home dulu.';return}
-        const valid = /^\+?\d{8,15}$/.test(n.replace(/\s+/g,''));
-        out.textContent = 'Checker result:\n' + (valid? 'FORMAT OK':'FORMAT INVALID') + '\nInput: ' + n;
-      }else if(name==='payload'){
-        const bug = document.getElementById('bugSelect').value;
-        out.textContent = 'Payload generated:\n' + JSON.stringify({bug,ts:Date.now(),sample:'payload_data'}, null, 2);
-      }else if(name==='logger'){
-        out.textContent = 'Logs:\n' + ['Init UI','User opened tools','No errors'].join('\n');
+    const backdrop = document.getElementById('backdrop');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalText = document.getElementById('modalText');
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+      const target = document.getElementById('target').value.trim();
+      if (!target) {
+        modalTitle.textContent = 'Target Kosong';
+        modalText.textContent = 'Masukkan nomor target untuk demo (contoh: +62 812xxxx).';
+        backdrop.style.display = 'flex';
+        return;
       }
-    }
-
-    // small UX: menu button toggles theme accent (example)
-    document.getElementById('menuBtn').addEventListener('click', ()=>{
-      document.body.classList.toggle('accent-swapped');
-      // Just a playful little effect
-      document.querySelectorAll('.hero').forEach(h=>h.style.filter = document.body.classList.contains('accent-swapped')? 'hue-rotate(200deg)':'none');
+      if (!selected) {
+        modalTitle.textContent = 'Pilih Bug';
+        modalText.textContent = 'Silakan pilih satu item dari daftar untuk melihat demo.';
+        backdrop.style.display = 'flex';
+        return;
+      }
+      // SAFE BEHAVIOR: show demo modal only
+      modalTitle.textContent = 'Demo Mode — Tidak Aktif';
+      modalText.textContent = `Kamu memilih: ${selected.toUpperCase()}. Fitur disembunyikan untuk keamanan. Gunakan tampilan ini untuk demo/tema.`;
+      backdrop.style.display = 'flex';
     });
 
-  </script></body>
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      document.getElementById('target').value = '';
+      selectItems.forEach(i => i.style.background = 'rgba(255,255,255,0.01)');
+      selected = null;
+    });
+
+    document.getElementById('closeModal').addEventListener('click', () => {
+      backdrop.style.display = 'none';
+    });
+
+    // small enhancement: close modal on backdrop click
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) backdrop.style.display = 'none';
+    });
+  </script>
+</body>
 </html>
