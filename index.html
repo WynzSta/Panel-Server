@@ -1,247 +1,234 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>PREMIUM KEY GEN - CROSS MODS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CROSS MODS KEY GEN</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, monospace;
-        }
         body {
-            background: radial-gradient(circle at 30% 10%, #0a0f1e, #03060c);
-            min-height: 100vh;
+            background: black;
+            color: cyan;
+            font-family: monospace;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
+            margin: 0;
             padding: 20px;
         }
-        .screen {
-            background: rgba(10, 15, 28, 0.95);
-            backdrop-filter: blur(16px);
-            border-radius: 48px;
-            border: 1px solid rgba(0, 255, 255, 0.4);
+        .box {
+            background: #111;
+            border: 2px solid cyan;
+            border-radius: 30px;
+            padding: 30px 20px;
             width: 100%;
-            max-width: 460px;
-            transition: all 0.2s;
-            box-shadow: 0 20px 35px rgba(0,0,0,0.5);
-        }
-        .screen-content {
-            padding: 28px 22px 36px;
+            max-width: 400px;
+            text-align: center;
         }
         h1 {
-            font-size: 26px;
-            background: linear-gradient(135deg, #fff, #3bc0fc);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-align: center;
-            margin-bottom: 6px;
+            font-size: 24px;
+            margin: 0 0 5px 0;
         }
         .sub {
-            text-align: center;
-            color: #8aa0c0;
-            font-size: 11px;
-            margin-bottom: 28px;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 30px;
         }
-        .option-row {
-            background: #050a14aa;
-            border-radius: 60px;
-            padding: 6px;
+        .durasi {
             display: flex;
-            gap: 8px;
-            margin-bottom: 28px;
+            gap: 10px;
+            margin-bottom: 30px;
         }
-        .opt-btn {
+        .durasi button {
             flex: 1;
-            background: #111a2a;
-            border: none;
-            padding: 12px 0;
-            border-radius: 50px;
-            color: #bbddff;
+            padding: 12px;
+            background: #222;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 40px;
             font-weight: bold;
-            font-size: 14px;
             cursor: pointer;
         }
-        .opt-btn.active {
-            background: #2a4c7a;
-            color: white;
-            box-shadow: 0 0 6px cyan;
+        .durasi button.active {
+            background: #00aaff;
+            color: black;
+            border-color: cyan;
         }
-        .premium-badge {
-            background: #ffaa33;
-            color: #111;
-            font-size: 9px;
-            padding: 2px 6px;
-            border-radius: 30px;
-            margin-left: 5px;
+        .premium {
+            background: #ff8800 !important;
+            color: black !important;
         }
-        .generate-btn {
-            background: linear-gradient(90deg, #3bc0fc, #1a5c9e);
+        .gen-btn {
             width: 100%;
+            padding: 15px;
+            background: #00aaff;
             border: none;
-            padding: 14px;
-            border-radius: 60px;
+            color: black;
             font-size: 18px;
             font-weight: bold;
-            color: white;
-            margin: 16px 0;
+            border-radius: 60px;
             cursor: pointer;
-        }
-        .generate-btn:active { transform: scale(0.97); }
-        
-        /* LAYAR HASIL */
-        .result-card {
-            background: #0b1122cc;
-            border-radius: 40px;
-            padding: 24px 18px;
-            text-align: center;
-            border: 1px solid #0f0;
             margin-bottom: 20px;
         }
-        .key-label {
-            font-size: 11px;
-            color: #6c86a8;
-            letter-spacing: 2px;
+        .result-area {
+            background: #000;
+            border: 1px solid #0f0;
+            border-radius: 20px;
+            padding: 15px;
+            margin-top: 20px;
+            display: none;
         }
-        .key-value {
-            font-size: 20px;
+        .key {
+            font-size: 18px;
             font-weight: bold;
-            font-family: monospace;
-            background: #000000aa;
-            padding: 10px;
-            border-radius: 40px;
-            margin: 12px 0;
             color: #0f0;
+            letter-spacing: 2px;
             word-break: break-all;
+            background: #0a0a0a;
+            padding: 10px;
+            border-radius: 15px;
         }
-        .info-row {
+        .info {
             display: flex;
             justify-content: space-between;
-            background: #03060e;
-            padding: 10px 16px;
-            border-radius: 60px;
-            margin: 8px 0;
+            margin: 10px 0;
+            font-size: 14px;
         }
         .back-btn {
-            background: #2a3a60;
+            background: #333;
             border: none;
-            padding: 12px;
-            border-radius: 60px;
+            padding: 10px;
             color: white;
-            font-weight: bold;
+            border-radius: 40px;
             width: 100%;
+            margin-top: 15px;
             cursor: pointer;
         }
-        .device-note {
+        .note {
             font-size: 11px;
             color: #ffaa55;
-            text-align: center;
-            margin-top: 12px;
+            margin-top: 15px;
+        }
+        button {
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-<!-- LAYAR 1: GENERATOR -->
-<div id="screenGen" style="display: block;">
-    <div class="screen">
-        <div class="screen-content">
-            <h1>⚡ CROSS MODS PANEL ⚡</h1>
-            <div class="sub">FREE FIRE - LICENSE GENERATOR</div>
-            <div class="option-row">
-                <button class="opt-btn" data-days="1">1 DAY</button>
-                <button class="opt-btn" data-days="7">7 DAYS</button>
-                <button class="opt-btn" data-days="30">30 DAYS <span class="premium-badge">PREMIUM</span></button>
-            </div>
-            <button class="generate-btn" id="genButton">✨ GENERATE KEY ✨</button>
-            <div class="device-note">🔒 Setiap key hanya untuk 1 device</div>
-        </div>
-    </div>
-</div>
+<div class="box" id="mainBox">
+    <h1>⚡ CROSS MODS PANEL ⚡</h1>
+    <div class="sub">FREE FIRE LICENSE GENERATOR</div>
 
-<!-- LAYAR 2: HASIL KEY (hidden dulu) -->
-<div id="screenResult" style="display: none;">
-    <div class="screen">
-        <div class="screen-content">
-            <div class="result-card">
-                <div class="key-label">🔑 YOUR GENERATED KEY 🔑</div>
-                <div class="key-value" id="keyDisplay">XXXX-XXXX-XXXX</div>
-                <div class="info-row">
-                    <span>📅 EXPIRY</span>
-                    <span id="expDisplay">30 DAYS</span>
-                </div>
-                <div class="info-row">
-                    <span>📱 DEVICE LIMIT</span>
-                    <span>MAX 1 DEVICE</span>
-                </div>
-            </div>
-            <button class="back-btn" id="backButton">◀ GENERATE LAGI</button>
-            <div class="device-note" id="bindMsg">✅ Key siap diaktivasi. Belum terikat device.</div>
+    <div class="durasi" id="durasiPanel">
+        <button data-hari="1">1 DAY</button>
+        <button data-hari="7">7 DAYS</button>
+        <button data-hari="30" id="premiumBtn">30 DAYS (PREMIUM)</button>
+    </div>
+
+    <button class="gen-btn" id="tombolGen">✨ GENERATE KEY ✨</button>
+    <div class="note">🔒 Max 1 device per key</div>
+
+    <!-- Tempat hasil (awalnya hidden) -->
+    <div id="hasilPanel" class="result-area">
+        <div style="font-size:12px; color:#aaa;">🔑 YOUR LICENSE KEY</div>
+        <div class="key" id="tampilKey">XXXX-XXXX-XXXX</div>
+        <div class="info">
+            <span>📅 EXPIRY</span>
+            <span id="tampilExp">30 DAYS</span>
         </div>
+        <div class="info">
+            <span>📱 DEVICE LIMIT</span>
+            <span>MAX 1 DEVICE</span>
+        </div>
+        <button class="back-btn" id="tombolBack">◀ GENERATE LAGI</button>
     </div>
 </div>
 
 <script>
+    // =============== AMBIL ELEMENT ===============
+    const tombolGen = document.getElementById('tombolGen');
+    const hasilDiv = document.getElementById('hasilPanel');
+    const tampilKey = document.getElementById('tampilKey');
+    const tampilExp = document.getElementById('tampilExp');
+    const tombolBack = document.getElementById('tombolBack');
+    const durasiBtns = document.querySelectorAll('.durasi button');
+
     // =============== STATE ===============
-    let currentDays = 1;
-    
-    // Fungsi generate key random (format: XXXX-XXXX-XXXX-XXXX + kode durasi)
-    function generateKey(days) {
-        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
-        let parts = [];
+    let hariTerpilih = 1;  // default 1 hari
+
+    // =============== FUNGSI GENERATE KEY ===============
+    function buatKey(hari) {
+        const huruf = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
+        let bagian = [];
         for (let i = 0; i < 4; i++) {
-            let part = '';
+            let seg = '';
             for (let j = 0; j < 4; j++) {
-                part += chars.charAt(Math.floor(Math.random() * chars.length));
+                seg += huruf.charAt(Math.floor(Math.random() * huruf.length));
             }
-            parts.push(part);
+            bagian.push(seg);
         }
-        let durCode = (days === 1) ? '1D' : (days === 7 ? '7D' : '30D');
-        return parts.join('-') + '-' + durCode;
-    }
-    
-    // Tampilkan layar hasil
-    function showResult(days) {
-        let newKey = generateKey(days);
-        document.getElementById('keyDisplay').innerText = newKey;
-        document.getElementById('expDisplay').innerText = days + ' DAYS';
+        let kodeDurasi = '';
+        if (hari === 1) kodeDurasi = '1D';
+        else if (hari === 7) kodeDurasi = '7D';
+        else kodeDurasi = '30D';
         
-        // (Opsional) simulasi binding device: hanya tampilan, tanpa localStorage dulu biar ga error
-        document.getElementById('bindMsg').innerHTML = '🔒 Key hanya bisa diaktivasi di 1 HP (simulasi)';
-        
-        // pindah layar
-        document.getElementById('screenGen').style.display = 'none';
-        document.getElementById('screenResult').style.display = 'block';
+        return bagian.join('-') + '-' + kodeDurasi;
     }
-    
-    // =============== EVENT HANDLER ===============
-    // Pilihan durasi (tampilan active)
-    const btns = document.querySelectorAll('.opt-btn');
-    btns.forEach(btn => {
+
+    // =============== TAMPILKAN HASIL ===============
+    function tampilkanHasil(hari) {
+        let keyBaru = buatKey(hari);
+        tampilKey.innerText = keyBaru;
+        tampilExp.innerText = hari + ' DAYS';
+        
+        // Sembunyikan tombol generate dan tampilkan panel hasil
+        tombolGen.style.display = 'none';
+        hasilDiv.style.display = 'block';
+    }
+
+    // =============== KEMBALI KE MENU GENERATE ===============
+    function kembaliKeGenerate() {
+        tombolGen.style.display = 'block';
+        hasilDiv.style.display = 'none';
+    }
+
+    // =============== EVENT UNTUK DURASI (1, 7, 30) ===============
+    durasiBtns.forEach(btn => {
         btn.addEventListener('click', function() {
-            btns.forEach(b => b.classList.remove('active'));
+            // Hapus class active dari semua
+            durasiBtns.forEach(b => b.classList.remove('active'));
+            // Tambah class active ke yang diklik
             this.classList.add('active');
-            currentDays = parseInt(this.getAttribute('data-days'));
+            
+            // Ambil nilai hari
+            let hari = parseInt(this.getAttribute('data-hari'));
+            if (!isNaN(hari)) {
+                hariTerpilih = hari;
+            }
+            
+            // Khusus tombol 30 hari, kasih warna premium (opsional)
+            if (hariTerpilih === 30) {
+                this.style.background = "#ff8800";
+            } else {
+                this.style.background = "";
+            }
         });
     });
-    
-    // Tombol GENERATE
-    document.getElementById('genButton').addEventListener('click', function() {
-        showResult(currentDays);
+
+    // =============== EVENT GENERATE ===============
+    tombolGen.addEventListener('click', function() {
+        tampilkanHasil(hariTerpilih);
     });
-    
-    // Tombol BACK (generate lagi)
-    document.getElementById('backButton').addEventListener('click', function() {
-        document.getElementById('screenGen').style.display = 'block';
-        document.getElementById('screenResult').style.display = 'none';
+
+    // =============== EVENT BACK (GENERATE LAGI) ===============
+    tombolBack.addEventListener('click', function() {
+        kembaliKeGenerate();
     });
-    
-    // Set default active 1 day
-    document.querySelector('.opt-btn[data-days="1"]').classList.add('active');
+
+    // =============== SET DEFAULT ACTIVE = 1 DAY ===============
+    durasiBtns[0].classList.add('active');
+    hariTerpilih = 1;
 </script>
 </body>
 </html>
