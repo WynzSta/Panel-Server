@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>PREMIUM KEY GENERATOR - CROSS MODS</title>
+    <title>PREMIUM KEY GEN - CROSS MODS</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', 'Poppins', monospace;
+            font-family: 'Segoe UI', system-ui, monospace;
         }
-
         body {
             background: radial-gradient(circle at 30% 10%, #0a0f1e, #03060c);
             min-height: 100vh;
@@ -20,50 +19,42 @@
             align-items: center;
             padding: 20px;
         }
-
-        /* LAYAR 1 - Panel Generator */
         .screen {
-            background: rgba(10, 15, 28, 0.9);
+            background: rgba(10, 15, 28, 0.95);
             backdrop-filter: blur(16px);
-            border-radius: 56px;
+            border-radius: 48px;
             border: 1px solid rgba(0, 255, 255, 0.4);
             width: 100%;
-            max-width: 480px;
-            transition: all 0.3s ease;
-            box-shadow: 0 25px 40px rgba(0,0,0,0.5);
+            max-width: 460px;
+            transition: all 0.2s;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.5);
         }
-
         .screen-content {
             padding: 28px 22px 36px;
         }
-
         h1 {
-            font-size: 28px;
+            font-size: 26px;
             background: linear-gradient(135deg, #fff, #3bc0fc);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-align: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
-
         .sub {
             text-align: center;
             color: #8aa0c0;
-            font-size: 12px;
+            font-size: 11px;
             margin-bottom: 28px;
-            letter-spacing: 1px;
         }
-
         .option-row {
             background: #050a14aa;
             border-radius: 60px;
-            padding: 8px;
+            padding: 6px;
             display: flex;
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 28px;
         }
-
         .opt-btn {
             flex: 1;
             background: #111a2a;
@@ -74,26 +65,20 @@
             font-weight: bold;
             font-size: 14px;
             cursor: pointer;
-            transition: 0.1s;
         }
-
         .opt-btn.active {
             background: #2a4c7a;
             color: white;
-            box-shadow: 0 0 8px cyan;
+            box-shadow: 0 0 6px cyan;
         }
-
-        /* Premium lock style khusus 30H */
         .premium-badge {
-            background: linear-gradient(90deg, #ffaa33, #ff6600);
-            color: black;
-            font-size: 10px;
-            padding: 2px 8px;
-            border-radius: 40px;
-            margin-left: 6px;
-            vertical-align: middle;
+            background: #ffaa33;
+            color: #111;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 30px;
+            margin-left: 5px;
         }
-
         .generate-btn {
             background: linear-gradient(90deg, #3bc0fc, #1a5c9e);
             width: 100%;
@@ -105,56 +90,42 @@
             color: white;
             margin: 16px 0;
             cursor: pointer;
-            transition: 0.2s;
         }
-
-        .generate-btn:active {
-            transform: scale(0.97);
-        }
-
-        /* LAYAR 2 - Hasil Key (hidden dulu) */
-        .result-screen {
-            display: none;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .key-card {
+        .generate-btn:active { transform: scale(0.97); }
+        
+        /* LAYAR HASIL */
+        .result-card {
             background: #0b1122cc;
-            border-radius: 48px;
-            padding: 28px 20px;
+            border-radius: 40px;
+            padding: 24px 18px;
             text-align: center;
             border: 1px solid #0f0;
-            box-shadow: 0 0 15px rgba(0,255,0,0.2);
+            margin-bottom: 20px;
         }
-
         .key-label {
-            font-size: 12px;
+            font-size: 11px;
             color: #6c86a8;
             letter-spacing: 2px;
         }
-
         .key-value {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
             font-family: monospace;
             background: #000000aa;
-            padding: 12px;
+            padding: 10px;
             border-radius: 40px;
             margin: 12px 0;
             color: #0f0;
             word-break: break-all;
         }
-
         .info-row {
             display: flex;
             justify-content: space-between;
             background: #03060e;
-            padding: 12px 18px;
+            padding: 10px 16px;
             border-radius: 60px;
             margin: 8px 0;
         }
-
         .back-btn {
             background: #2a3a60;
             border: none;
@@ -162,181 +133,113 @@
             border-radius: 60px;
             color: white;
             font-weight: bold;
+            width: 100%;
             cursor: pointer;
-            margin-top: 12px;
         }
-
-        .device-limit {
-            font-size: 12px;
+        .device-note {
+            font-size: 11px;
             color: #ffaa55;
             text-align: center;
-            margin-top: 8px;
+            margin-top: 12px;
         }
     </style>
 </head>
 <body>
 
-<!-- LAYAR 1: Generator -->
-<div id="screenGenerator" class="screen">
-    <div class="screen-content">
-        <h1>⚡ CROSS MODS PANEL ⚡</h1>
-        <div class="sub">FREE FIRE - LICENSE GENERATOR</div>
-
-        <div class="option-row">
-            <button class="opt-btn" data-days="1">1 DAY</button>
-            <button class="opt-btn" data-days="7">7 DAYS</button>
-            <button class="opt-btn premium" data-days="30">30 DAYS <span class="premium-badge">PREMIUM</span></button>
+<!-- LAYAR 1: GENERATOR -->
+<div id="screenGen" style="display: block;">
+    <div class="screen">
+        <div class="screen-content">
+            <h1>⚡ CROSS MODS PANEL ⚡</h1>
+            <div class="sub">FREE FIRE - LICENSE GENERATOR</div>
+            <div class="option-row">
+                <button class="opt-btn" data-days="1">1 DAY</button>
+                <button class="opt-btn" data-days="7">7 DAYS</button>
+                <button class="opt-btn" data-days="30">30 DAYS <span class="premium-badge">PREMIUM</span></button>
+            </div>
+            <button class="generate-btn" id="genButton">✨ GENERATE KEY ✨</button>
+            <div class="device-note">🔒 Setiap key hanya untuk 1 device</div>
         </div>
-
-        <button class="generate-btn" id="genBtn">✨ GENERATE KEY ✨</button>
-        <div style="font-size:11px; text-align:center; color:#556; margin-top:12px;">🔒 Max 1 device per key</div>
     </div>
 </div>
 
-<!-- LAYAR 2: Hasil Key -->
-<div id="screenResult" class="screen" style="display: none;">
-    <div class="screen-content result-screen">
-        <div class="key-card">
-            <div class="key-label">🔑 YOUR GENERATED KEY 🔑</div>
-            <div class="key-value" id="resultKey">XXXX-XXXX-XXXX</div>
-            
-            <div class="info-row">
-                <span>📅 EXPIRY</span>
-                <span id="expDays">30 DAYS</span>
+<!-- LAYAR 2: HASIL KEY (hidden dulu) -->
+<div id="screenResult" style="display: none;">
+    <div class="screen">
+        <div class="screen-content">
+            <div class="result-card">
+                <div class="key-label">🔑 YOUR GENERATED KEY 🔑</div>
+                <div class="key-value" id="keyDisplay">XXXX-XXXX-XXXX</div>
+                <div class="info-row">
+                    <span>📅 EXPIRY</span>
+                    <span id="expDisplay">30 DAYS</span>
+                </div>
+                <div class="info-row">
+                    <span>📱 DEVICE LIMIT</span>
+                    <span>MAX 1 DEVICE</span>
+                </div>
             </div>
-            <div class="info-row">
-                <span>📱 DEVICE LIMIT</span>
-                <span>1 / 1</span>
-            </div>
-            <div class="device-limit" id="deviceMsg">⚠️ Key hanya bisa diaktivasi di 1 HP</div>
+            <button class="back-btn" id="backButton">◀ GENERATE LAGI</button>
+            <div class="device-note" id="bindMsg">✅ Key siap diaktivasi. Belum terikat device.</div>
         </div>
-        <button class="back-btn" id="backBtn">◀ GENERATE LAGI</button>
     </div>
 </div>
 
 <script>
     // =============== STATE ===============
-    let selectedDays = 1;      // default 1 hari
-    let generatedKey = "";
+    let currentDays = 1;
     
-    // Daftar key yang sudah dipakai (simulasi binding device)
-    // Di real world, ini harus di server. Tapi untuk demo pakai localStorage.
-    let usedKeys = JSON.parse(localStorage.getItem("usedKeys")) || {};  // { "KEY123": "deviceID_hash" }
-
-    // =============== DOM Elements ===============
-    const genScreen = document.getElementById('screenGenerator');
-    const resScreen = document.getElementById('screenResult');
-    const genBtn = document.getElementById('genBtn');
-    const backBtn = document.getElementById('backBtn');
-    const resultKeySpan = document.getElementById('resultKey');
-    const expDaysSpan = document.getElementById('expDays');
-
-    // =============== Helper ===============
-    function generateRandomKey(days) {
+    // Fungsi generate key random (format: XXXX-XXXX-XXXX-XXXX + kode durasi)
+    function generateKey(days) {
         const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
-        let segments = [];
-        for (let s = 0; s < 4; s++) {
-            let seg = '';
-            for (let i = 0; i < 4; i++) seg += chars.charAt(Math.floor(Math.random() * chars.length));
-            segments.push(seg);
+        let parts = [];
+        for (let i = 0; i < 4; i++) {
+            let part = '';
+            for (let j = 0; j < 4; j++) {
+                part += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            parts.push(part);
         }
-        let base = segments.join('-');
-        // tambahkan kode durasi
-        let durCode = (days === 1) ? "1D" : (days === 7 ? "7D" : "30D");
-        return `${base}-${durCode}`;
+        let durCode = (days === 1) ? '1D' : (days === 7 ? '7D' : '30D');
+        return parts.join('-') + '-' + durCode;
     }
-
-    // Simulasi bind key ke 1 device (pakai fingerprint sederhana)
-    function getDeviceFingerprint() {
-        // Di dunia nyata: ambil model, androidId, dll. Di sini simulasi pakai localStorage + random
-        let fp = localStorage.getItem("device_fp");
-        if (!fp) {
-            fp = "DEV_" + Math.random().toString(36).substr(2, 10);
-            localStorage.setItem("device_fp", fp);
-        }
-        return fp;
-    }
-
-    function isKeyAlreadyBoundToOtherDevice(key) {
-        let currentDevice = getDeviceFingerprint();
-        if (usedKeys[key] && usedKeys[key] !== currentDevice) {
-            return true;  // sudah dipakai device lain
-        }
-        return false;
-    }
-
-    function bindKeyToDevice(key) {
-        let currentDevice = getDeviceFingerprint();
-        if (!usedKeys[key]) {
-            usedKeys[key] = currentDevice;
-            localStorage.setItem("usedKeys", JSON.stringify(usedKeys));
-        }
-    }
-
-    // Pindah layar dengan animasi
-    function showResultScreen(key, days) {
-        resultKeySpan.innerText = key;
-        expDaysSpan.innerText = days + " DAYS";
+    
+    // Tampilkan layar hasil
+    function showResult(days) {
+        let newKey = generateKey(days);
+        document.getElementById('keyDisplay').innerText = newKey;
+        document.getElementById('expDisplay').innerText = days + ' DAYS';
         
-        // cek apakah key bentrok?
-        if (isKeyAlreadyBoundToOtherDevice(key)) {
-            resultKeySpan.style.color = "#ff6666";
-            document.getElementById("deviceMsg").innerHTML = "❌ KEY SUDAH DIPAKAI DEVICE LAIN! (Limit 1 device)";
-        } else {
-            resultKeySpan.style.color = "#0f0";
-            document.getElementById("deviceMsg").innerHTML = "✅ KEY VALID | Belum terikat device. Saat aktivasi nanti akan di-lock ke HP ini.";
-            bindKeyToDevice(key); // langsung lock di generator? opsional, biar langsung terikat.
-        }
+        // (Opsional) simulasi binding device: hanya tampilan, tanpa localStorage dulu biar ga error
+        document.getElementById('bindMsg').innerHTML = '🔒 Key hanya bisa diaktivasi di 1 HP (simulasi)';
         
         // pindah layar
-        genScreen.style.display = "none";
-        resScreen.style.display = "block";
+        document.getElementById('screenGen').style.display = 'none';
+        document.getElementById('screenResult').style.display = 'block';
     }
-
-    // =============== Event untuk pilih durasi + tampilan premium ===============
-    const optBtns = document.querySelectorAll('.opt-btn');
-    optBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            optBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            selectedDays = parseInt(btn.getAttribute('data-days'));
-            
-            // efek premium cuma visual (tapi nanti di generate juga tetep jalan untuk 30 hari)
-            if (selectedDays === 30) {
-                // tidak ada batasan fungsional selain tampilan badge
-                console.log("Premium 30 hari dipilih");
-            }
+    
+    // =============== EVENT HANDLER ===============
+    // Pilihan durasi (tampilan active)
+    const btns = document.querySelectorAll('.opt-btn');
+    btns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            btns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentDays = parseInt(this.getAttribute('data-days'));
         });
     });
-
-    // =============== GENERATE KEY -> LANGSUNG PINDAH LAYAR ===============
-    genBtn.addEventListener('click', () => {
-        // Buat key baru
-        let newKey = generateRandomKey(selectedDays);
-        generatedKey = newKey;
-        
-        // Cegah duplikasi key? Bebas aja, tapi biar unik kita cek bentrok tipis
-        if (usedKeys[newKey]) {
-            // kalau tabrakan (probabilitas kecil), generate ulang
-            newKey = generateRandomKey(selectedDays) + Math.floor(Math.random()*10);
-            generatedKey = newKey;
-        }
-        
-        // Tampilkan layar kedua dengan key
-        showResultScreen(generatedKey, selectedDays);
+    
+    // Tombol GENERATE
+    document.getElementById('genButton').addEventListener('click', function() {
+        showResult(currentDays);
     });
-
-    // =============== BACK / GENERATE LAGI ===============
-    backBtn.addEventListener('click', () => {
-        // Kembali ke generator, reset tampilan
-        genScreen.style.display = "block";
-        resScreen.style.display = "none";
-        
-        // opsi: reset form tidak perlu, biarkan pilihan durasi tetap
-        // Tapi kita hapus highlight sementara? tidak usah.
+    
+    // Tombol BACK (generate lagi)
+    document.getElementById('backButton').addEventListener('click', function() {
+        document.getElementById('screenGen').style.display = 'block';
+        document.getElementById('screenResult').style.display = 'none';
     });
-
-    // =============== INISIALISASI ===============
+    
     // Set default active 1 day
     document.querySelector('.opt-btn[data-days="1"]').classList.add('active');
 </script>
